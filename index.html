@@ -35,34 +35,66 @@
 			</tbody>
 		</table>
 	</div>
-	<div ng-controller="inputTableCntr">
-	<!-- <div ng-controller="inputListCntr"> -->
+	<!-- <div ng-controller="inputTableCntr"> -->
+	<div ng-controller="inputListCntr">
 		<table class="pure-table pure-table-bordered">
 			<thead>
 				<tr>
 					<td>Day</td>
 					<td>Period</td>
-					<td>Subject</td>
+					<td>Duration</td>
 					<td>Batch</td>
-					<td>Room</td>
-					<td>Teacher</td>
+					<td>Subject<button class="pure-button button-success">+</button></td>
+					<td>Room<button class="pure-button button-success">+</button></td>
+					<td>Teacher<button class="pure-button button-success">+</button></td>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
 					<td>
-						<select ng-model>
-							<option ng-repeat="day in dayItems"> {{dayItem.label + 'day'}} </option>
+						<select ng-model="dayChoice">
+							<option value="">----</option>
+							<option ng-repeat="day in dayItems"> {{day.label + 'day'}} </option>
 						</select>
 					</td>
-					<td>Period</td>
-					<td>Subject</td>
-					<td>Batch</td>
-					<td>Room</td>
-					<td>Teacher</td>
+					<td>
+						<select ng-model="pChoice" class="pure-input">
+							<option value="">----</option>
+							<option ng-repeat="period in classesEachDay"> {{period.label}} </option>
+						</select>
+					</td>
+					<td></td>
+					<td>
+						<select ng-model="sChoice" class="pure-input">
+							<option value="">----</option>
+							<option ng-repeat="sub in userConfigs.subjects"> {{sub.key}} </option>
+						</select>
+					</td>
+					<td>
+						<!-- checkboxes -->
+					</td>
+					<td>
+						<select ng-model="rChoice" class="pure-input">
+							<option value="">----</option>
+							<option ng-repeat="room in userConfigs.rooms"> {{room.key}} </option>
+						</select>
+					</td>
+					<td>
+						<select ng-model="tChoice" class="pure-input">
+							<option value="">----</option>
+							<option ng-repeat="teacher in userConfigs.teachers"> {{teacher.key}} </option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="7">
+						<center>
+							<button class="pure-button button-success">+ ADD ROW</button>
+						</center>
+					</td>
 				</tr>
 			</tbody>
-		</table>
+		</table>{{userConfigs.rows}}
 	</div>
 </body>
 </html>
