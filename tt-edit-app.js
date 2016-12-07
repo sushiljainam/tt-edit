@@ -94,10 +94,12 @@ ttEditApp.controller('inputListCntr', function inputListCntr($scope) {
   
   $scope.userConfigs.rows = [];
 
+
+  $scope.rowInput = {};
   $scope.addRow = function (row) {
     var toPush = angular.copy(row);
     $scope.userConfigs.rows.push(toPush);
-    $scope.rowInput = null;
+    $scope.rowInput = {};
   }
 
 });
