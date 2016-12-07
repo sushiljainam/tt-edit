@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="https://unpkg.com/purecss@0.6.0/build/pure-min.css">
 </head>
 <body>
-	<div ng-controller="inputTableCntr">
+	<div ng-controller="inputTableCntr" ng-if="false">
 		<table class="pure-table pure-table-bordered">
 			<thead>
 				<tr>
@@ -47,25 +47,32 @@
 					<td>Subject<button class="pure-button button-success">+</button></td>
 					<td>Room<button class="pure-button button-success">+</button></td>
 					<td>Teacher<button class="pure-button button-success">+</button></td>
+					<td>Actions</td>
 				</tr>
 			</thead>
 			<tbody>
+				<!-- ngrepeat for saved rows -->
 				<tr>
 					<td>
-						<select ng-model="dayChoice">
+						<select ng-model="rowInput.d">
 							<option value="">----</option>
 							<option ng-repeat="day in dayItems"> {{day.label + 'day'}} </option>
 						</select>
 					</td>
 					<td>
-						<select ng-model="pChoice" class="pure-input">
+						<select ng-model="rowInput.p" class="pure-input">
 							<option value="">----</option>
 							<option ng-repeat="period in classesEachDay"> {{period.label}} </option>
 						</select>
 					</td>
-					<td></td>
 					<td>
-						<select ng-model="sChoice" class="pure-input">
+						<select ng-model="rowInput.dur" class="pure-input">
+							<option value="">----</option>
+							<option ng-repeat="d in [1,2,3]"> {{$index+1}} </option>
+						</select>
+					</td>
+					<td>
+						<select ng-model="rowInput.s" class="pure-input">
 							<option value="">----</option>
 							<option ng-repeat="sub in userConfigs.subjects"> {{sub.key}} </option>
 						</select>
@@ -74,26 +81,28 @@
 						<!-- checkboxes -->
 					</td>
 					<td>
-						<select ng-model="rChoice" class="pure-input">
+						<select ng-model="rowInput.r" class="pure-input">
 							<option value="">----</option>
 							<option ng-repeat="room in userConfigs.rooms"> {{room.key}} </option>
 						</select>
 					</td>
 					<td>
-						<select ng-model="tChoice" class="pure-input">
+						<select ng-model="rowInput.t" class="pure-input">
 							<option value="">----</option>
 							<option ng-repeat="teacher in userConfigs.teachers"> {{teacher.key}} </option>
 						</select>
 					</td>
+					<td></td>
 				</tr>
 				<tr>
 					<td colspan="7">
 						<center>
-							<button class="pure-button button-success">+ ADD ROW</button>
+							<button ng-click="addRow(rowInput)" class="pure-button button-success">+ ADD ROW</button>
 						</center>
 					</td>
+					<td></td>
 				</tr>
-			</tbody>
+			</tbody>{{rowInput}}
 		</table>{{userConfigs.rows}}
 	</div>
 </body>
