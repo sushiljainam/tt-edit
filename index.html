@@ -4,13 +4,15 @@
 	<title>tt - edit</title>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
 	<script type="text/javascript" src="tt-edit-app.js"></script>
+	<link rel="stylesheet" href="https://unpkg.com/purecss@0.6.0/build/pure-min.css">
 </head>
 <body>
 	<div ng-controller="inputTableCntr">
-		<table>
+		<table class="pure-table pure-table-bordered">
 			<thead>
 				<tr>
-					<td>ada
+					<td>
+						<button class="pure-button">SAVE</button>
 					</td>
 					<td ng-repeat="classADay in classesEachDay">{{classADay.label}}
 					</td>
