@@ -61,7 +61,9 @@
 					<td> {{row.r}} </td>
 					<td> {{row.t}} </td>
 					<td>
-						<button class="pure-button button-success" ng-click="copyRow(row)" >copy</button>
+						<button class="pure-button button-success" ng-click="copyRow(row)" >Copy</button>
+						<button class="pure-button button-success" ng-click="editRow(row,$index)" >Edit</button>
+						<button class="pure-button button-success" ng-click="deleteRow($index)" >Delete</button>
 					</td>
 				</tr>
 				<!-- ngrepeat for saved rows -->
@@ -70,19 +72,19 @@
 					<td>
 						<select ng-model="rowInput.d">
 							<option value="">----</option>
-							<option ng-repeat="day in dayItems"> {{day.label + 'day'}} </option>
+							<option ng-repeat="day in dayItems">{{day.label}}</option>
 						</select>
 					</td>
 					<td>
 						<select ng-model="rowInput.p" class="pure-input">
 							<option value="">----</option>
-							<option ng-repeat="period in classesEachDay"> {{period.label}} </option>
+							<option ng-repeat="period in classesEachDay">{{period.label}}</option>
 						</select>
 					</td>
 					<td>
 						<select ng-model="rowInput.dur" class="pure-input">
 							<option value="">----</option>
-							<option ng-repeat="d in [1,2,3]"> {{$index+1}} </option>
+							<option ng-repeat="d in [1,2,3]">{{$index+1}}</option>
 						</select>
 					</td>
 					<td>
@@ -91,19 +93,19 @@
 					<td>
 						<select ng-model="rowInput.s" class="pure-input">
 							<option value="">----</option>
-							<option ng-repeat="sub in userConfigs.subjects"> {{sub.key}} </option>
+							<option ng-repeat="sub in userConfigs.subjects">{{sub.key}}</option>
 						</select>
 					</td>
 					<td>
 						<select ng-model="rowInput.r" class="pure-input">
 							<option value="">----</option>
-							<option ng-repeat="room in userConfigs.rooms"> {{room.key}} </option>
+							<option ng-repeat="room in userConfigs.rooms">{{room.key}}</option>
 						</select>
 					</td>
 					<td>
 						<select ng-model="rowInput.t" class="pure-input">
 							<option value="">----</option>
-							<option ng-repeat="teacher in userConfigs.teachers"> {{teacher.key}} </option>
+							<option ng-repeat="teacher in userConfigs.teachers">{{teacher.key}}</option>
 						</select>
 					</td>
 					<td></td>

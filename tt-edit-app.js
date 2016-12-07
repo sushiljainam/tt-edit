@@ -43,12 +43,12 @@ ttEditApp.controller('inputTableCntr', function inputTableCntr($scope) {
 // Define the `inputListCntr` controller on the `ttEditApp` module
 ttEditApp.controller('inputListCntr', function inputListCntr($scope) {
   $scope.dayItems = [
-  {"label":"Mon"},
-  {"label":"Tues"},
-  {"label":"Wednes"},
-  {"label":"Thurs"},
-  {"label":"Fri"},
-  {"label":"Satur"}
+  {"label":"Monday"},
+  {"label":"Tuesday"},
+  {"label":"Wednesday"},
+  {"label":"Thursday"},
+  {"label":"Friday"},
+  {"label":"Satudayr"}
   ];
   $scope.classesEachDay = [
   {"label":"I","startTime":"","endTime":""},
@@ -92,18 +92,27 @@ ttEditApp.controller('inputListCntr', function inputListCntr($scope) {
   $scope.userConfigs.t.btc = 0;
 
   
-  $scope.userConfigs.rows = [];
+  $scope.userConfigs.rows = [{"p":"II","dur":"2","d":"Wednesday","s":"sub3","r":"room2","t":"tea1"}];
 
 
   $scope.rowInput = {};
   $scope.addRow = function (row) {
     var toPush = angular.copy(row);
     $scope.userConfigs.rows.push(toPush);
-    // $scope.rowInput = {};
+    $scope.rowInput = {};
   }
   $scope.copyRow = function (row) {
     var toPush = angular.copy(row);
-    $scope.userConfigs.rows.push(toPush);
+    $scope.rowInput = toPush;
+  }
+
+  $scope.deleteRow = function(idx) {
+    $scope.userConfigs.rows.splice(idx,1);
+  }
+
+   $scope.editRow = function(row,idx) {
+    $scope.copyRow(row);
+    $scope.deleteRow(idx);
   }
 
 });
