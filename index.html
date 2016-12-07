@@ -12,7 +12,7 @@
 			<thead>
 				<tr>
 					<td>
-						<button class="pure-button">SAVE</button>
+						<button class="pure-button pure-button-primary">SAVE</button>
 					</td>
 					<td ng-repeat="classADay in classesEachDay">{{classADay.label}}
 					</td>
@@ -22,7 +22,14 @@
 				<tr ng-repeat="dayItem in dayItems">
 					<td>{{dayItem.label + 'day'}}
 					</td>
-					<td ng-repeat="classADay in classesEachDay">{{classADay.label}}
+					<td ng-repeat="classADay in classesEachDay">
+						<!-- may do it with directive -->
+						<div class="prev-saved">
+							<!-- list of all -->
+						</div>
+						<div class="plus">
+							<button class="pure-button button-success">+</button>
+						</div>
 					</td>
 				</tr>
 			</tbody>
