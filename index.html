@@ -52,6 +52,18 @@
 			</thead>
 			<tbody>
 				<!-- ngrepeat for saved rows -->
+				<tr ng-repeat="row in userConfigs.rows">{{userConfigs.rows}}
+					<td> {{row.d}} </td>
+					<td> {{row.p}} </td>
+					<td> {{row.dur}} </td>
+					<td>  </td>
+					<td> {{row.s}} </td>
+					<td> {{row.r}} </td>
+					<td> {{row.t}} </td>
+					<td>  </td>
+				</tr>
+				<!-- ngrepeat for saved rows -->
+
 				<tr>
 					<td>
 						<select ng-model="rowInput.d">
@@ -72,13 +84,13 @@
 						</select>
 					</td>
 					<td>
+						<!-- checkboxes -->
+					</td>
+					<td>
 						<select ng-model="rowInput.s" class="pure-input">
 							<option value="">----</option>
 							<option ng-repeat="sub in userConfigs.subjects"> {{sub.key}} </option>
 						</select>
-					</td>
-					<td>
-						<!-- checkboxes -->
 					</td>
 					<td>
 						<select ng-model="rowInput.r" class="pure-input">
