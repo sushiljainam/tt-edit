@@ -92,7 +92,8 @@ ttEditApp.controller('inputListCntr', function inputListCntr($scope) {
   $scope.userConfigs.t.btc = 0;
 
   
-  $scope.userConfigs.rows = [{"p":"II","dur":"2","d":"Wednesday","s":"sub3","r":"room2","t":"tea1"}];
+  $scope.userConfigs.rows = [{"p":"II","dur":"2","d":"Wednesday","s":"sub3","r":"room2","t":"tea1"},
+  {"b":{"0":true,"2":true},"s":"sub1","r":"room3","t":"tea4","dur":"3"}];
 
 
   $scope.rowInput = {};
@@ -115,4 +116,24 @@ ttEditApp.controller('inputListCntr', function inputListCntr($scope) {
     $scope.deleteRow(idx);
   }
 
+  $scope.showBtc = function(b) {
+    if (b) {
+      var str = '';
+      if (b['0']==true) { str+='CS1,'};
+      if (b['1']==true) { str+='CS2,'};
+      if (b['2']==true) { str+='CS3,'};
+      if (b['3']==true) { str+='CS4,'};
+      return str;
+    } else {
+      return 'CS';
+    }
+    // if (b==undefined) {
+    //   return 'CS';
+    // } else {
+    //   for (a : b) {
+    //     if (a) {};
+    //   };
+    // };
+    
+  }
 });
