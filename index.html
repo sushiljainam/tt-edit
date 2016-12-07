@@ -1,24 +1,26 @@
-<html>
+<!doctype html>
+<html lang="en" ng-app="ttEditApp">
 <head>
 	<title>tt - edit</title>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+	<script type="text/javascript" src="tt-edit-app.js"></script>
 </head>
 <body>
-	<div>
+	<div ng-controller="inputTableCntr">
 		<table>
 			<thead>
 				<tr>
 					<td>ada
 					</td>
-					<td>asdads
+					<td ng-repeat="classADay in classesEachDay">{{classADay.label}}
 					</td>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>asdw
+				<tr ng-repeat="dayItem in dayItems">
+					<td>{{dayItem.label + 'day'}}
 					</td>
-					<td>asdas
+					<td ng-repeat="classADay in classesEachDay">{{classADay.label}}
 					</td>
 				</tr>
 			</tbody>
