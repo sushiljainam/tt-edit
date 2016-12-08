@@ -12,7 +12,16 @@
 <body ng-controller="bodyCntr">
 	<div>
 		<button ng-click="toggleViewTable()" class="pure-button button-success">switch</button>
-		<span>selected semester is: {{semCh}} &amp; branch is: {{brCh}}</span>
+		<span>selected semester is: {{conf.semCh}}
+			<select ng-change="changeLoc()" ng-model="conf.semCh">
+				<!-- <option value="">--</option> -->
+				<option ng-repeat="sem in [1,2,3,4,5,6,7,8]">{{sem}}</option>
+			</select> &amp; branch is: {{brCh}}
+			<select ng-change="changeLoc()" ng-model="conf.brCh">
+				<!-- <option value="">--</option> -->
+				<option ng-repeat="br in ['cs','me','ee','ce']">{{br}}</option>
+			</select>
+		</span>
 	</div>
 	<div ng-controller="inputTableCntr" ng-if="viewTable">
 		<table class="pure-table pure-table-bordered">
@@ -125,7 +134,12 @@
 							<button ng-click="addRow(rowInput)" class="pure-button button-success">+ ADD ROW</button>
 						</center>
 					</td>
-					<td></td>
+					<td>
+						<center>
+							<p ng-show="savingPost">Saving...</p>
+							<button ng-click="savePost()" class="pure-button pure-button-primary">SAVE</button>
+						</center>
+					</td>
 				</tr>
 			</tbody>
 		</table>{{userConfigs.rows}}{{rowInput}}
