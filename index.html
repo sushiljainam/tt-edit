@@ -6,8 +6,9 @@
 	<script type="text/javascript" src="tt-edit-app.js"></script>
 	<link rel="stylesheet" href="https://unpkg.com/purecss@0.6.0/build/pure-min.css">
 </head>
-<body>
-	<div ng-controller="inputTableCntr" ng-if="false">
+<body ng-controller="bodyCntr">
+	<div><button ng-click="toggleViewTable()" class="pure-button button-success">switch</button></div>
+	<div ng-controller="inputTableCntr" ng-if="viewTable">
 		<table class="pure-table pure-table-bordered">
 			<thead>
 				<tr>
@@ -36,7 +37,7 @@
 		</table>
 	</div>
 	<!-- <div ng-controller="inputTableCntr"> -->
-	<div ng-controller="inputListCntr">
+	<div ng-controller="inputListCntr" ng-if="!viewTable">
 		<table class="pure-table pure-table-bordered">
 			<thead>
 				<tr>
@@ -52,7 +53,7 @@
 			</thead>
 			<tbody>
 				<!-- ngrepeat for saved rows -->
-				<tr ng-repeat="row in userConfigs.rows">{{userConfigs.rows}}
+				<tr ng-repeat="row in userConfigs.rows">
 					<td> {{row.d}} </td>
 					<td> {{row.p}} </td>
 					<td> {{row.dur}} </td>
@@ -108,7 +109,9 @@
 							<option ng-repeat="teacher in userConfigs.teachers">{{teacher.key}}</option>
 						</select>
 					</td>
-					<td></td>
+					<td>
+						<button ng-show="isEmptyObj(rowInput)" ng-click="resetRow()" class="pure-button button-success">reset</button>
+					</td>
 				</tr>
 				<tr>
 					<td colspan="7">
@@ -118,8 +121,8 @@
 					</td>
 					<td></td>
 				</tr>
-			</tbody>{{rowInput}}
-		</table>{{userConfigs.rows}}
+			</tbody>
+		</table>{{userConfigs.rows}}{{rowInput}}
 	</div>
 </body>
 </html>

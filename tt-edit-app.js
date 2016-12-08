@@ -1,6 +1,14 @@
 // Define the `ttEditApp` module
 var ttEditApp = angular.module('ttEditApp', []);
 
+// Define the `bodyCntr` controller on the `ttEditApp` module
+ttEditApp.controller('bodyCntr', function inputTableCntr($scope) {
+  $scope.viewTable = false;
+  $scope.toggleViewTable = function () {
+    $scope.viewTable = !$scope.viewTable;
+  }
+
+});
 // Define the `inputTableCntr` controller on the `ttEditApp` module
 ttEditApp.controller('inputTableCntr', function inputTableCntr($scope) {
   $scope.dayItems = [
@@ -99,7 +107,7 @@ ttEditApp.controller('inputListCntr', function inputListCntr($scope) {
   $scope.addRow = function (row) {
     var toPush = angular.copy(row);
     $scope.userConfigs.rows.push(toPush);
-    $scope.rowInput = {};
+    $scope.resetRow();
   }
   $scope.copyRow = function (row) {
     var toPush = angular.copy(row);
@@ -115,4 +123,11 @@ ttEditApp.controller('inputListCntr', function inputListCntr($scope) {
     $scope.deleteRow(idx);
   }
 
+  $scope.resetRow = function () {
+    $scope.rowInput = {};
+  }
+
+  $scope.isEmptyObj = function (obj) {
+    return angular.equals(obj, {});
+  }
 });
