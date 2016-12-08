@@ -104,17 +104,21 @@ ttEditApp.controller('bodyCntr', ['$scope','$http','$cookies','$location', funct
 		console.log('saving data');
 	}
 
-	$scope.showBtc = function(b) {
+	$scope.showBtc = function(b,cl) {
 		if (b) {
 			var str = '';
-			if (b['0']==true) { str+='1,'};
-			if (b['1']==true) { str+='2,'};
-			if (b['2']==true) { str+='3,'};
-			if (b['3']==true) { str+='4,'};
+			if (b['0']==true) { str+=cl+'1,'};
+			if (b['1']==true) { str+=cl+'2,'};
+			if (b['2']==true) { str+=cl+'3,'};
+			if (b['3']==true) { str+=cl+'4,'};
+			if (b['4']==true) { str+=cl+'5,'};
+			if (b['5']==true) { str+=cl+'6,'};
+			if (b['6']==true) { str+=cl+'7,'};
+			if (b['7']==true) { str+=cl+'8,'};
 			str = str.slice(0, - 1);
 			return str;
 		} else {
-			return 'All';
+			return cl;
 		}
 	}
 

@@ -16,7 +16,7 @@
 			<select ng-change="changeLoc()" ng-model="conf.semCh">
 				<!-- <option value="">--</option> -->
 				<option ng-repeat="sem in [1,2,3,4,5,6,7,8]">{{sem}}</option>
-			</select> &amp; branch is: {{brCh}}
+			</select> &amp; branch is: {{conf.brCh}}
 			<select ng-change="changeLoc()" ng-model="conf.brCh">
 				<!-- <option value="">--</option> -->
 				<option ng-repeat="br in ['cs','me','ee','ce']">{{br}}</option>
@@ -72,7 +72,7 @@
 					<td> {{row.d}} </td>
 					<td> {{row.p}} </td>
 					<td> {{row.dur}} </td>
-					<td> {{showBtc(row.b)}} </td>
+					<td> {{showBtc(row.b,conf.brCh)}} </td>
 					<td> {{row.s}} </td>
 					<td> {{row.r}} </td>
 					<td> {{row.t}} </td>
@@ -105,8 +105,9 @@
 					</td>
 					<td>
 						<!-- checkboxes -->
-						<span ng-repeat="bt in userConfigs.batches[conf.brCh].many">{{conf.brCh + bt}}
-							<input type="checkbox" ng-model="rowInput.b[$index]" />
+						<span ng-repeat="bt in userConfigs.batches[conf.brCh].many">
+							<label for="{{'chBtc'+$index}}">{{conf.brCh + bt}}</label>
+							<input type="checkbox" id="{{'chBtc'+$index}}" ng-model="rowInput.b[$index]" />
 						</span>
 					</td>
 					<td>
