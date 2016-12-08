@@ -2,7 +2,7 @@
 var ttEditApp = angular.module('ttEditApp', ['ngCookies']);
 
 // Define the `bodyCntr` controller on the `ttEditApp` module
-ttEditApp.controller('bodyCntr', ['$scope','$cookies','$location', function inputTableCntr($scope, $cookies, $location) {
+ttEditApp.controller('bodyCntr', ['$scope','$http','$cookies','$location', function inputTableCntr($scope, $http, $cookies, $location) {
 
   $scope.dayItems = [
   {"label":"Monday"},
@@ -79,8 +79,28 @@ ttEditApp.controller('bodyCntr', ['$scope','$cookies','$location', function inpu
     $scope.urlToData();
   }
 
+  
   //code for save and saving
+  $scope.savingPost = false;
   $scope.savePost = function(){
+    $scope.savingPost = true;
+    $http.post('http://52.76.114.10:3001/getuseractivitylist', {"currentpage":2,"pagelimit":220})
+      .success(function(res){
+        //console.log('getUseractivityCategory', JSON.stringify(res));
+        if(res.rTL){
+          alert('Session Expired');
+            $scope.savingPost = false;
+
+        } else {
+        console.log(res);
+          $scope.savingPost = false;
+
+        }
+      }).error(function(err){
+        console.log(err);
+          $scope.savingPost = false;
+
+      })
     console.log('saving data');
   }
 
