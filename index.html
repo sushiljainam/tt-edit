@@ -10,7 +10,10 @@
 	<link rel="stylesheet" href="https://unpkg.com/purecss@0.6.0/build/pure-min.css">
 </head>
 <body ng-controller="bodyCntr">
-	<div><button ng-click="toggleViewTable()" class="pure-button button-success">switch</button>{{viewTable}}</div>
+	<div>
+		<button ng-click="toggleViewTable()" class="pure-button button-success">switch</button>
+		<span>selected semester is: {{semCh}} &amp; branch is: {{brCh}}</span>
+	</div>
 	<div ng-controller="inputTableCntr" ng-if="viewTable">
 		<table class="pure-table pure-table-bordered">
 			<thead>
