@@ -25,11 +25,12 @@ ttEditApp.controller('inputListCntr', function inputListCntr($scope) {
   {"key":"tea4"},
   ];
 
-  $scope.userConfigs.batches = [
-  {"label":"cs", "many" : [1,2,3,4]},
-  {"label":"ee", "many" : [1,2,3,4,5,6]},
-  {"label":"ce", "many" : [1,2,3,4,5,6,7,8]}
-  ];
+  $scope.userConfigs.batches = {
+  "cs":{ "many" : [1,2,3,4]},
+  "ee":{ "many" : [1,2,3,4,5,6]},
+  "me":{ "many" : [1,2,3,4,5,6]},
+  "ce":{ "many" : [1,2,3,4,5,6,7,8]}
+  };
 
   $scope.userConfigs.t = {};
   $scope.userConfigs.t.btc = 0;
