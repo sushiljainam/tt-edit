@@ -1,6 +1,8 @@
 # tt-edit
 to edit timetable and save JSON
 
+--------
+
 route - path
 
 #/cs/4 -> ['', 'cs', '4']  -> ['cs', '4']  -> 4, 'cs'
@@ -25,3 +27,8 @@ route - hash
 
 #cs -> ['cs'] -> un, 'cs'
 #4  -> ['4']  -> 4, un
+
+
+--------
+
+TODO: when no change in data, deactivate 'save' button, show SAVED
