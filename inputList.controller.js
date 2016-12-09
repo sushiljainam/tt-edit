@@ -1,6 +1,6 @@
 // Define the `inputListCntr` controller on the `ttEditApp` module
 ttEditApp.controller('inputListCntr', function inputListCntr($scope) {
-  
+
   $scope.userConfigs = {};
   $scope.userConfigs.subjects = [
   {"key":"sub1"},
@@ -35,13 +35,18 @@ ttEditApp.controller('inputListCntr', function inputListCntr($scope) {
   $scope.userConfigs.t = {};
   $scope.userConfigs.t.btc = 0;
 
-  
-  $scope.userConfigs.rows = [{"p":"II","dur":"2","d":"Wednesday","s":"sub3","r":"room2","t":"tea1"}];
+
+  $scope.userConfigs.rows = [
+    {"dur":"2","d":"Wednesday","b":{"2":true},"s":"sub3","t":"tea3","sem":"3","br":"ce","p":"III","r":"room3"}
+    ,{"dur":"2","p":"II","d":"Friday","s":"sub1","r":"room1","t":"tea1","sem":"3","br":"ce"}
+  ];
 
 
   $scope.rowInput = {};
-  $scope.addRow = function (row) {
-    var toPush = angular.copy(row);
+  $scope.addRow = function (row,sem,br) {
+    console.log(row,sem,br);
+    var toPush = angular.copy(row) || {};
+    toPush.sem = sem; toPush.br = br;
     $scope.userConfigs.rows.push(toPush);
     $scope.resetRow();
   }

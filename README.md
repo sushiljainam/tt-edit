@@ -32,3 +32,4 @@ route - hash
 --------
 
 TODO: when no change in data, deactivate 'save' button, show SAVED
+TODO: in every row, store branch and sem

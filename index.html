@@ -72,7 +72,7 @@
 					<td> {{row.d}} </td>
 					<td> {{row.p}} </td>
 					<td> {{row.dur}} </td>
-					<td> {{showBtc(row.b,conf.brCh)}} </td>
+					<td> {{showBtc(row.b,row.br)}} </td>
 					<td> {{row.s}} </td>
 					<td> {{row.r}} </td>
 					<td> {{row.t}} </td>
@@ -135,7 +135,7 @@
 				<tr>
 					<td colspan="7">
 						<center>
-							<button ng-click="addRow(rowInput)" class="pure-button button-success">+ ADD ROW</button>
+							<button ng-click="addRow(rowInput,conf.semCh,conf.brCh)" class="pure-button button-success">+ ADD ROW</button>
 						</center>
 					</td>
 					<td>
