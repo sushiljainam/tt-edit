@@ -4,6 +4,7 @@
 	<title>tt - edit</title>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-cookies.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-animate.js"></script>
 	<script type="text/javascript" src="tt-edit-app.js"></script>
 	<script type="text/javascript" src="inputTable.controller.js"></script>
 	<script type="text/javascript" src="inputList.controller.js"></script>
@@ -69,7 +70,7 @@
 			</thead>
 			<tbody>
 				<!-- ngrepeat for saved rows -->
-				<tr ng-repeat="row in userConfigs.rows">
+				<tr ng-repeat="row in userConfigs.rows" style="transition: 0.3s;">
 					<td> {{row.d}} </td>
 					<td> {{row.p}} </td>
 					<td> {{row.dur}} </td>
@@ -162,7 +163,9 @@
 			document.getElementById("myNav").style.width = "0%";
 		}
 		</script>
-		<div class="listView">asadsd</div>
+		<div class="listView">
+			<sidelist></sidelist>
+		</div>
 		<div class="grey-transparent closeArea" onclick="closeNav()">adasda</div>
 	</div>
 </body>
