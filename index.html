@@ -8,6 +8,7 @@
 	<script type="text/javascript" src="inputTable.controller.js"></script>
 	<script type="text/javascript" src="inputList.controller.js"></script>
 	<link rel="stylesheet" href="https://unpkg.com/purecss@0.6.0/build/pure-min.css">
+	<link rel="stylesheet" href="over.css">
 </head>
 <body ng-controller="bodyCntr">
 	<div>
@@ -147,6 +148,22 @@
 				</tr>
 			</tbody>
 		</table>{{userConfigs.rows}}{{rowInput}}
+	</div>
+	<button type="button" name="button" onclick="openNav()">open</button>
+	<div class="overlay" id="myNav">
+		<script type="text/javascript">
+		/* Open when someone clicks on the span element */
+		function openNav() {
+			document.getElementById("myNav").style.width = "100%";
+		}
+
+		/* Close when someone clicks on the "x" symbol inside the overlay */
+		function closeNav() {
+			document.getElementById("myNav").style.width = "0%";
+		}
+		</script>
+		<div class="listView">asadsd</div>
+		<div class="grey-transparent closeArea" onclick="closeNav()">adasda</div>
 	</div>
 </body>
 </html>

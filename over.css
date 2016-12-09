@@ -1,0 +1,26 @@
+/* The Overlay (background) */
+.overlay {
+/* Height & width depends on how you want to reveal the overlay (see JS below) */
+height: 100%;
+width: 0;
+position: fixed; /* Stay in place */
+z-index: 10; /* Sit on top */
+right: 0;
+top: 0;
+background-color: rgb(0,0,0); /* Black fallback color */
+background-color: rgba(0,0,0, 0.5); /* Black w/opacity */
+overflow-x: hidden; /* Disable horizontal scroll */
+transition: 0.3s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+}
+.closeArea {
+height: 100%;
+width: auto;
+float: left;
+}
+.listView {
+height: 100%;
+width: auto;
+float: right;
+z-index: 10; /* Sit on top */
+background-color: rgba(255,255,255, 0.85); /* Black fallback color */
+}
