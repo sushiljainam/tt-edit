@@ -68,11 +68,11 @@
 			</thead>
 			<tbody>
 				<!-- ngrepeat for saved rows -->
-				<tr ng-repeat="row in userConfigs.rows">
+				<tr ng-repeat="row in userConfigs.rows" ng-if="row.br==conf.brCh && row.sem==conf.semCh">
 					<td> {{row.d}} </td>
 					<td> {{row.p}} </td>
 					<td> {{row.dur}} </td>
-					<td> {{showBtc(row.b,row.br)}} </td>
+					<td> {{showBtc(row.b,row.br,row.sem)}} </td>
 					<td> {{row.s}} </td>
 					<td> {{row.r}} </td>
 					<td> {{row.t}} </td>

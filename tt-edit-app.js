@@ -23,7 +23,7 @@ ttEditApp.controller('bodyCntr', ['$scope','$http','$cookies','$location', funct
 	$scope.viewTable = $cookies.get('viewTable') ? (JSON.parse($cookies.get('viewTable')) === true ? true : false) : false;
 	$scope.toggleViewTable = function () {
 		// console.log('1',$cookies.get('viewTable'),typeof $scope.viewTable, $scope.viewTable);
-		
+
 		$cookies.put('viewTable',(!$scope.viewTable).toString());
 		// console.log('2',$cookies.get('viewTable'),typeof $scope.viewTable, $scope.viewTable);
 
@@ -40,31 +40,31 @@ ttEditApp.controller('bodyCntr', ['$scope','$http','$cookies','$location', funct
 			var arr = $location.hash().split('/');
 			console.log(arr);
 			break;
-			
+
 			default:
 			var arr = $location.path().split('/'); //$location.search().split('/')
 			console.log(arr);
 			arr.splice(0,1);
 			console.log(arr);
 			break;
-	
+
 		}
 			var input1 = arr[0];
 			var input2 = arr[1];
 		console.log('input1,input2',input1,input2);
-	
+
 		var reg = new RegExp('^[0-9]+$');
 		if (reg.test(input2)) {var semCh = input2; var brCh = input1;};
 		// console.log('sem,br',semCh,brCh);
 		if (reg.test(input1)) {var semCh = input1; var brCh = input2;};
 		// console.log('sem,br',semCh,brCh);
-	
+
 		if (!(semCh && brCh)) {var brCh = input1;};
 		console.log('sem,br',semCh,brCh);
-	
+
 		$scope.semCh = semCh; $scope.brCh = brCh;
 		if(reg.test($scope.brCh)) $scope.brCh = undefined;
-		
+
 		$scope.conf = {};
 		$scope.conf.semCh = angular.copy($scope.semCh);
 		$scope.conf.brCh = angular.copy($scope.brCh);
@@ -79,7 +79,7 @@ ttEditApp.controller('bodyCntr', ['$scope','$http','$cookies','$location', funct
 		$scope.urlToData();
 	}
 
-	
+
 	//code for save and saving
 	$scope.savingPost = false;
 	$scope.savePost = function(){
@@ -104,25 +104,26 @@ ttEditApp.controller('bodyCntr', ['$scope','$http','$cookies','$location', funct
 		console.log('saving data');
 	}
 
-	$scope.showBtc = function(b,cl) {
+	$scope.showBtc = function(b,br,sem) {
+		var str = sem;
 		if (b) {
-			var str = '';
-			if (b['0']==true) { str+=cl+'1,'};
-			if (b['1']==true) { str+=cl+'2,'};
-			if (b['2']==true) { str+=cl+'3,'};
-			if (b['3']==true) { str+=cl+'4,'};
-			if (b['4']==true) { str+=cl+'5,'};
-			if (b['5']==true) { str+=cl+'6,'};
-			if (b['6']==true) { str+=cl+'7,'};
-			if (b['7']==true) { str+=cl+'8,'};
+			str += '(';
+			if (b['0']==true) { str+=br+'1,'};
+			if (b['1']==true) { str+=br+'2,'};
+			if (b['2']==true) { str+=br+'3,'};
+			if (b['3']==true) { str+=br+'4,'};
+			if (b['4']==true) { str+=br+'5,'};
+			if (b['5']==true) { str+=br+'6,'};
+			if (b['6']==true) { str+=br+'7,'};
+			if (b['7']==true) { str+=br+'8,'};
 			str = str.slice(0, - 1);
+			str += ')';
 			return str;
 		} else {
-			return cl;
+			str += br;
+			return str;
 		}
 	}
 
 	$scope.urlToData();
 }]);
-
-
