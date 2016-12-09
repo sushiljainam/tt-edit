@@ -15,7 +15,7 @@
 		<span>selected semester is: {{conf.semCh}}
 			<select ng-change="changeLoc()" ng-model="conf.semCh">
 				<!-- <option value="">--</option> -->
-				<option ng-repeat="sem in [1,2,3,4,5,6,7,8]">{{sem}}</option>
+				<option ng-repeat="sem in numberToArray(8)">{{sem}}</option>
 			</select> &amp; branch is: {{conf.brCh}}
 			<select ng-change="changeLoc()" ng-model="conf.brCh">
 				<!-- <option value="">--</option> -->
@@ -100,12 +100,12 @@
 					<td>
 						<select ng-model="rowInput.dur" class="pure-input">
 							<option value="">----</option>
-							<option ng-repeat="d in [1,2,3]">{{$index+1}}</option>
+							<option ng-repeat="d in numberToArray(3)">{{d}}</option>
 						</select>
 					</td>
 					<td>
 						<!-- checkboxes -->
-						<span ng-repeat="bt in userConfigs.batches[conf.brCh].many">
+						<span ng-repeat="bt in numberToArray(userConfigs.batches[conf.brCh].many)">
 							<label for="{{'chBtc'+$index}}"><input type="checkbox" id="{{'chBtc'+$index}}" ng-model="rowInput.b[$index]" />{{conf.brCh + bt}}
 							</label>
 						</span>

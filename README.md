@@ -32,6 +32,8 @@ route - hash
 --------
 
 TODO: when no change in data, deactivate 'save' button, show SAVED
-TODO: in every row, store branch and sem
+TODO: in every row, store branch and sem - DONE
 TODO: create test data buttons
-TODO: batches - true, false - manage | without object swap | also show colors and shape around de/selected checkbox and label
+TODO: batches - true, false - manage DONE | without object swap HMM | also show colors and shape around de/selected checkbox and label
+TODO: for settings/configs - edit/add/modify - chat like minimize-able windows || manage in sideList overlay
+TODO: number to array - for ng-repeat

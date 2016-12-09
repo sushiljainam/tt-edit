@@ -26,10 +26,10 @@ ttEditApp.controller('inputListCntr', function inputListCntr($scope) {
   ];
 
   $scope.userConfigs.batches = {
-  "cs":{ "many" : [1,2,3,4]},
-  "ee":{ "many" : [1,2,3,4,5,6]},
-  "me":{ "many" : [1,2,3,4,5,6]},
-  "ce":{ "many" : [1,2,3,4,5,6,7,8]}
+  "cs":{ "many" : 4},
+  "ee":{ "many" : 6},
+  "me":{ "many" : 6},
+  "ce":{ "many" : 8}
   };
 
   $scope.userConfigs.t = {};

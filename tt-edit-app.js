@@ -130,5 +130,13 @@ ttEditApp.controller('bodyCntr', ['$scope','$http','$cookies','$location', funct
 		}
 	}
 
+	//number to array for ng-repeat: 4 -> [1,2,3,4]
+	$scope.numberToArray = function(num){
+		var arr = [];
+		//i must start with 1 and end to num
+		for (var i = 1; i <= num; i++) {arr.push(i);};
+		return arr;
+	}
+
 	$scope.urlToData();
 }]);
