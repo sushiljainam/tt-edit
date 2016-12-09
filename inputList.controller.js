@@ -39,6 +39,7 @@ ttEditApp.controller('inputListCntr', function inputListCntr($scope) {
   $scope.userConfigs.rows = [
     {"dur":"2","d":"Wednesday","b":{"2":true},"s":"sub3","t":"tea3","sem":"3","br":"ce","p":"III","r":"room3"}
     ,{"dur":"2","p":"II","d":"Friday","s":"sub1","r":"room1","t":"tea1","sem":"3","br":"ce"}
+    ,{"dur":"3","p":"II","d":"Tuesday","b":{"1":true,"2":true},"s":"sub3","t":"tea3","r":"room1","sem":"3","br":"me"}
   ];
 
 
