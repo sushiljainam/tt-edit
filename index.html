@@ -106,8 +106,8 @@
 					<td>
 						<!-- checkboxes -->
 						<span ng-repeat="bt in userConfigs.batches[conf.brCh].many">
-							<label for="{{'chBtc'+$index}}">{{conf.brCh + bt}}</label>
-							<input type="checkbox" id="{{'chBtc'+$index}}" ng-model="rowInput.b[$index]" />
+							<label for="{{'chBtc'+$index}}"><input type="checkbox" id="{{'chBtc'+$index}}" ng-model="rowInput.b[$index]" />{{conf.brCh + bt}}
+							</label>
 						</span>
 					</td>
 					<td>

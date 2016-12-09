@@ -40,6 +40,14 @@ ttEditApp.controller('inputListCntr', function inputListCntr($scope) {
     {"dur":"2","d":"Wednesday","b":{"2":true},"s":"sub3","t":"tea3","sem":"3","br":"ce","p":"III","r":"room3"}
     ,{"dur":"2","p":"II","d":"Friday","s":"sub1","r":"room1","t":"tea1","sem":"3","br":"ce"}
     ,{"dur":"3","p":"II","d":"Tuesday","b":{"1":true,"2":true},"s":"sub3","t":"tea3","r":"room1","sem":"3","br":"me"}
+    ,{"dur":"2","d":"Wednesday","b":{"2":true},"s":"sub3","t":"tea3","sem":"3","br":"ce","p":"III","r":"room3"}
+    ,{"dur":"2","p":"II","d":"Friday","s":"sub1","r":"room1","t":"tea1","sem":"3","br":"ce"}
+    ,{"dur":"3","p":"II","d":"Tuesday","b":{"1":true,"2":true},"s":"sub3","t":"tea3","r":"room1","sem":"3","br":"me"}
+    ,{"b":{"0":true,"1":true},"sem":"3","br":"me"}
+    ,{"sem":"3","br":"cs"}
+    ,{"b":{"2":true},"s":"sub2","sem":"2","br":"cs"}
+    ,{"dur":"2","p":"III","b":{"3":true,"5":true,"7":true},"sem":"2","br":"ce","r":"room2","s":"sub3"}
+    ,{"dur":"2","p":"III","b":{"2":true,"3":true,"5":true,"7":true},"sem":"2","br":"ce","r":"room2","s":"sub1","d":"Wednesday","t":"tea2"}
   ];
 
 

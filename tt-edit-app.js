@@ -107,19 +107,24 @@ ttEditApp.controller('bodyCntr', ['$scope','$http','$cookies','$location', funct
 	$scope.showBtc = function(b,br,sem) {
 		var str = sem;
 		if (b) {
-			str += '(';
-			if (b['0']==true) { str+=br+'1,'};
-			if (b['1']==true) { str+=br+'2,'};
-			if (b['2']==true) { str+=br+'3,'};
-			if (b['3']==true) { str+=br+'4,'};
-			if (b['4']==true) { str+=br+'5,'};
-			if (b['5']==true) { str+=br+'6,'};
-			if (b['6']==true) { str+=br+'7,'};
-			if (b['7']==true) { str+=br+'8,'};
-			str = str.slice(0, - 1);
-			str += ')';
-			return str;
-		} else {
+			//if no key is true then do nothing here
+			var atLeastOneTrue = false;
+			for(var key in b){
+				if(b[key] == true){
+					atLeastOneTrue = true;
+					break;
+				}
+			}
+			if (atLeastOneTrue == true) {
+				str += '(';
+				for (var key in b) {
+					if (b[key]==true) { str+= br+(JSON.parse(key)+1)+',' };
+				}
+				str = str.slice(0, - 1);
+				str += ')';
+				return str;
+			}
+		} {
 			str += br;
 			return str;
 		}

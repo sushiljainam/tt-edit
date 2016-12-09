@@ -33,3 +33,5 @@ route - hash
 
 TODO: when no change in data, deactivate 'save' button, show SAVED
 TODO: in every row, store branch and sem
+TODO: create test data buttons
+TODO: batches - true, false - manage | without object swap | also show colors and shape around de/selected checkbox and label
