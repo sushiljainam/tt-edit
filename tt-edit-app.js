@@ -79,7 +79,11 @@ ttEditApp.controller('bodyCntr', ['$scope','$http','$cookies','$location', funct
 		$scope.urlToData();
 	}
 
-
+	//code for noFilters
+	$scope.noFilters = false;
+	$scope.toggleNoFilters = function () {
+		$scope.noFilters = !$scope.noFilters;
+	}
 	//code for save and saving
 	$scope.savingPost = false;
 	$scope.savePost = function(toSave){
@@ -93,16 +97,17 @@ ttEditApp.controller('bodyCntr', ['$scope','$http','$cookies','$location', funct
 				// console.log('test/tt-save', JSON.stringify(res));
 				if(res.rTL){
 					alert('Session Expired');
-						$scope.savingPost = false;
+					$scope.savingPost = false;
 
 				} else {
-				console.log(res);
+					console.log(res);
+					alert('Saved');
 					$scope.savingPost = false;
 
 				}
 			}).error(function(err){
 				console.log(err);
-					$scope.savingPost = false;
+				$scope.savingPost = false;
 
 			})
 		console.log('saving data');

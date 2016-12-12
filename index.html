@@ -22,6 +22,11 @@
 				<option ng-repeat="br in ['cs','me','ee','ce']">{{br}}</option>
 			</select>
 		</span>
+		<button ng-if="!viewTable" ng-click="toggleNoFilters()" class="pure-button">
+			<!-- make it a checkbox, or handle css on button, or strikethrough -->
+			<span ng-show="noFilters">filters</span>
+			<span ng-show="!noFilters"><strong><s>filters</s></strong></span>
+		</button>{{noFilters?'showing All':'filtered'}}
 	</div>
 	<div ng-controller="inputTableCntr" ng-if="viewTable">
 		<table class="pure-table pure-table-bordered">
@@ -68,7 +73,7 @@
 			</thead>
 			<tbody>
 				<!-- ngrepeat for saved rows -->
-				<tr ng-repeat="row in userConfigs.rows" ng-if="row.br==conf.brCh && row.sem==conf.semCh">
+				<tr ng-repeat="row in userConfigs.rows" ng-if="noFilters || (row.br==conf.brCh && row.sem==conf.semCh)">
 					<td> {{row.d}} </td>
 					<td> {{row.p}} </td>
 					<td> {{row.dur}} </td>
