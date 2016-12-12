@@ -1,0 +1,16 @@
+.cb-span {
+    margin: 4px;
+    float: left;
+}
+.cb
+{
+    border: 1px solid rgb(0, 0, 0);
+    /* background-color: rgb(230, 230, 230); */
+    margin: 3px;
+    padding: 2px;
+}
+input[type="checkbox"]:checked + label {
+	background-color: rgb(230, 230, 230);
+    border-radius: 3px; 
+	border: 1px solid rgb(255, 255, 255);
+}

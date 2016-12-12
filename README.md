@@ -36,4 +36,5 @@ TODO: in every row, store branch and sem - DONE
 TODO: create test data buttons
 TODO: batches - true, false - manage DONE | without object swap HMM | also show colors and shape around de/selected checkbox and label
 TODO: for settings/configs - edit/add/modify - chat like minimize-able windows || manage in sideList overlay
-TODO: number to array - for ng-repeat
+TODO: number to array - for ng-repeat - DONE
+TODO: check for all batch true

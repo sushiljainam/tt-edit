@@ -48,6 +48,8 @@ ttEditApp.controller('inputListCntr', function inputListCntr($scope) {
     ,{"b":{"2":true},"s":"sub2","sem":"2","br":"cs"}
     ,{"dur":"2","p":"III","b":{"3":true,"5":true,"7":true},"sem":"2","br":"ce","r":"room2","s":"sub3"}
     ,{"dur":"2","p":"III","b":{"2":true,"3":true,"5":true,"7":true},"sem":"2","br":"ce","r":"room2","s":"sub1","d":"Wednesday","t":"tea2"}
+    ,{"b":{"0":true,"1":true,"2":true,"3":true,"5":true},"dur":"1","p":"I","d":"Wednesday","sem":"3","br":"ce"}
+    ,{"b":{"0":true,"1":true,"2":true,"3":true,"4":true,"5":true,"6":true,"7":true},"dur":"1","p":"I","d":"Wednesday","sem":"3","br":"ce"}
   ];
 
 
