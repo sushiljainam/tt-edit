@@ -82,11 +82,15 @@ ttEditApp.controller('bodyCntr', ['$scope','$http','$cookies','$location', funct
 
 	//code for save and saving
 	$scope.savingPost = false;
-	$scope.savePost = function(){
+	$scope.savePost = function(toSave){
 		$scope.savingPost = true;
-		$http.post('http://52.76.114.10:3001/getuseractivitylist', {"currentpage":2,"pagelimit":220})
+		$http({
+			method: 'POST',	headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+			url: 'http://localhost/test/tt-save/',
+			data: toSave,
+		})
 			.success(function(res){
-				//console.log('getUseractivityCategory', JSON.stringify(res));
+				// console.log('test/tt-save', JSON.stringify(res));
 				if(res.rTL){
 					alert('Session Expired');
 						$scope.savingPost = false;
