@@ -82,8 +82,8 @@
 					<td> {{row.r}} </td>
 					<td> {{row.t}} </td>
 					<td>
-						<button class="pure-button button-success" ng-click="copyRow(row)" >Copy</button>
-						<button class="pure-button button-success" ng-click="editRow(row,$index)" >Edit</button>
+						<button ng-disabled="noFilters" class="pure-button button-success" ng-click="copyRow(row)" >Copy</button>
+						<button ng-disabled="noFilters" class="pure-button button-success" ng-click="editRow(row,$index)" >Edit</button>
 						<button class="pure-button button-danger" ng-click="deleteRow($index)" >Delete</button>
 					</td>
 				</tr>

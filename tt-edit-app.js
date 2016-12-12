@@ -34,18 +34,18 @@ ttEditApp.controller('bodyCntr', ['$scope','$http','$cookies','$location', funct
 
 	//code for routing with path or search or hash
 	$scope.urlToData = function () {
-		var decision = $location.hash() ? 2 : 1; console.log($location.hash(),$location.path(),$location.search());
+		var decision = $location.hash() ? 2 : 1; //console.log($location.hash(),$location.path(),$location.search());
 		switch(decision){
 			case 2:
 			var arr = $location.hash().split('/');
-			console.log(arr);
+			// console.log(arr);
 			break;
 
 			default:
 			var arr = $location.path().split('/'); //$location.search().split('/')
-			console.log(arr);
+			// console.log(arr);
 			arr.splice(0,1);
-			console.log(arr);
+			// console.log(arr);
 			break;
 
 		}
