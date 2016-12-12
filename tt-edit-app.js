@@ -96,7 +96,7 @@ ttEditApp.controller('bodyCntr', ['$scope','$http','$cookies','$location', funct
 			.success(function(res){
 				// console.log('test/tt-save', JSON.stringify(res));
 				if(res.rTL){
-					alert('Session Expired');
+					alert('errorr');
 					$scope.savingPost = false;
 
 				} else {
