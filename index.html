@@ -8,6 +8,7 @@
 	<script type="text/javascript" src="inputTable.controller.js"></script>
 	<script type="text/javascript" src="inputList.controller.js"></script>
 	<link rel="stylesheet" href="https://unpkg.com/purecss@0.6.0/build/pure-min.css">
+	<link rel="stylesheet" href="checkbox.css">
 </head>
 <body ng-controller="bodyCntr">
 	<div>
@@ -110,10 +111,10 @@
 					</td>
 					<td>
 						<!-- checkboxes -->
-						<span ng-repeat="bt in numberToArray(userConfigs.batches[conf.brCh].many)">
-							<label for="{{'chBtc'+$index}}"><input type="checkbox" id="{{'chBtc'+$index}}" ng-model="rowInput.b[$index]" />{{conf.brCh + bt}}
-							</label>
-						</span>
+						<div class="cb-span" ng-repeat="bt in numberToArray(userConfigs.batches[conf.brCh].many)">
+							<input style="display:none;" type="checkbox" id="{{'chBtc'+$index}}" ng-model="rowInput.b[$index]" />
+							<label class="cb" for="{{'chBtc'+$index}}">{{conf.brCh + bt}}</label>
+						</div>
 					</td>
 					<td>
 						<select ng-model="rowInput.s" class="pure-input">
