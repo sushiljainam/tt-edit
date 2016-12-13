@@ -22,7 +22,7 @@
 			</select> &amp; branch is: {{conf.brCh}}
 			<select ng-change="changeLoc()" ng-model="conf.brCh">
 				<!-- <option value="">--</option> -->
-				<option ng-repeat="br in ['cs','me','ee','ce']">{{br}}</option>
+				<option ng-repeat="br in ['CS','ME','EE','CE']">{{br}}</option>
 			</select>
 		</span>
 		<button ng-if="!viewTable" ng-click="toggleNoFilters()" class="pure-button">
