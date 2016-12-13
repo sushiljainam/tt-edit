@@ -13,11 +13,11 @@ ttEditApp.controller('bodyCntr', ['$scope','$http','$cookies','$location', funct
 	{"label":"Saturday"}
 	];
 	$scope.classesEachDay = [
-	{"label":"I","startTime":"","endTime":""},
-	{"label":"II","startTime":"","endTime":""},
-	{"label":"III","startTime":"","endTime":""},
-	{"label":"IV","startTime":"","endTime":""},
-	{"label":"V","startTime":"","endTime":""}
+	{"value":1, "label":"I","startTime":"","endTime":""},
+	{"value":2, "label":"II","startTime":"","endTime":""},
+	{"value":3, "label":"III","startTime":"","endTime":""},
+	{"value":4, "label":"IV","startTime":"","endTime":""},
+	{"value":5, "label":"V","startTime":"","endTime":""}
 	]
 
 	$scope.viewTable = $cookies.get('viewTable') ? (JSON.parse($cookies.get('viewTable')) === true ? true : false) : false;

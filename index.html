@@ -102,7 +102,7 @@
 					<td>
 						<select ng-model="rowInput.p" class="pure-input">
 							<option value="">----</option>
-							<option ng-repeat="period in classesEachDay">{{period.label}}</option>
+							<option ng-repeat="period in classesEachDay" value="{{period.value}}">{{period.label}}</option>
 						</select>
 					</td>
 					<td>
@@ -154,7 +154,7 @@
 					</td>
 				</tr>
 			</tbody>
-		</table>{{userConfigs.rows}}{{rowInput}}
+		</table> {{userConfigs.rows}}{{rowInput}}
 	</div>
 	<button type="button" name="button" onclick="openNav()">open</button>
 	<div class="overlay" id="myNav">
