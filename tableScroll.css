@@ -1,0 +1,10 @@
+thead, tbody { display: block; }
+
+/*thead td, tbody td {
+    width: 10%;  //Optional
+}*/
+
+tbody.savedR {
+    height: 400px;       /* Just for the demo          */
+    overflow-y: auto;    /* Trigger vertical scroll    */
+}

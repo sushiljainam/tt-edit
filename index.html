@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="https://unpkg.com/purecss@0.6.0/build/pure-min.css">
 	<link rel="stylesheet" href="over.css">
 	<link rel="stylesheet" href="checkbox.css">
+	<link rel="stylesheet" href="tableScroll.css">
 </head>
 <body ng-controller="bodyCntr">
 	<div>
@@ -67,14 +68,14 @@
 					<td>Day</td>
 					<td>Period</td>
 					<td>Duration</td>
-					<td style="width: 100px">Batch</td>
+					<td>Batch</td>
 					<td>Subject<button class="pure-button button-success">+</button></td>
 					<td>Room<button class="pure-button button-success">+</button></td>
 					<td>Teacher<button class="pure-button button-success">+</button></td>
 					<td>Actions</td>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody class="savedR">
 				<!-- ngrepeat for saved rows -->
 				<tr ng-repeat="row in userConfigs.rows" style="transition: 0.3s;" ng-if="noFilters || (row.br==conf.brCh && row.sem==conf.semCh)">
 					<td> {{row.d}} </td>
@@ -91,7 +92,8 @@
 					</td>
 				</tr>
 				<!-- ngrepeat for saved rows -->
-
+			</tbody>
+			<tbody>
 				<tr>
 					<td>
 						<select ng-model="rowInput.d">
@@ -154,7 +156,7 @@
 					</td>
 				</tr>
 			</tbody>
-		</table> {{userConfigs.rows}}{{rowInput}}
+		</table> <!-- {{userConfigs.rows}}{{rowInput}} -->
 	</div>
 	<button type="button" name="button" onclick="openNav()">open</button>
 	<div class="overlay" id="myNav">
