@@ -10,6 +10,7 @@
 	<script type="text/javascript" src="inputList.controller.js"></script>
 	<link rel="stylesheet" href="https://unpkg.com/purecss@0.6.0/build/pure-min.css">
 	<link rel="stylesheet" href="over.css">
+	<link rel="stylesheet" href="checkbox.css">
 </head>
 <body ng-controller="bodyCntr">
 	<div>
@@ -17,13 +18,18 @@
 		<span>selected semester is: {{conf.semCh}}
 			<select ng-change="changeLoc()" ng-model="conf.semCh">
 				<!-- <option value="">--</option> -->
-				<option ng-repeat="sem in [1,2,3,4,5,6,7,8]">{{sem}}</option>
+				<option ng-repeat="sem in numberToArray(8)">{{sem}}</option>
 			</select> &amp; branch is: {{conf.brCh}}
 			<select ng-change="changeLoc()" ng-model="conf.brCh">
 				<!-- <option value="">--</option> -->
 				<option ng-repeat="br in ['cs','me','ee','ce']">{{br}}</option>
 			</select>
 		</span>
+		<button ng-if="!viewTable" ng-click="toggleNoFilters()" class="pure-button">
+			<!-- make it a checkbox, or handle css on button, or strikethrough -->
+			<span ng-show="noFilters">filters</span>
+			<span ng-show="!noFilters"><strong><s>filters</s></strong></span>
+		</button>{{noFilters?'showing All':'filtered'}}
 	</div>
 	<div ng-controller="inputTableCntr" ng-if="viewTable">
 		<table class="pure-table pure-table-bordered">
@@ -61,7 +67,7 @@
 					<td>Day</td>
 					<td>Period</td>
 					<td>Duration</td>
-					<td>Batch</td>
+					<td style="width: 100px">Batch</td>
 					<td>Subject<button class="pure-button button-success">+</button></td>
 					<td>Room<button class="pure-button button-success">+</button></td>
 					<td>Teacher<button class="pure-button button-success">+</button></td>
@@ -70,17 +76,17 @@
 			</thead>
 			<tbody>
 				<!-- ngrepeat for saved rows -->
-				<tr ng-repeat="row in userConfigs.rows" style="transition: 0.3s;">
+				<tr ng-repeat="row in userConfigs.rows" style="transition: 0.3s;" ng-if="noFilters || (row.br==conf.brCh && row.sem==conf.semCh)">
 					<td> {{row.d}} </td>
 					<td> {{row.p}} </td>
 					<td> {{row.dur}} </td>
-					<td> {{showBtc(row.b,conf.brCh)}} </td>
+					<td> {{showBtc(row.b,row.br,row.sem)}} </td>
 					<td> {{row.s}} </td>
 					<td> {{row.r}} </td>
 					<td> {{row.t}} </td>
 					<td>
-						<button class="pure-button button-success" ng-click="copyRow(row)" >Copy</button>
-						<button class="pure-button button-success" ng-click="editRow(row,$index)" >Edit</button>
+						<button ng-disabled="noFilters" class="pure-button button-success" ng-click="copyRow(row)" >Copy</button>
+						<button ng-disabled="noFilters" class="pure-button button-success" ng-click="editRow(row,$index)" >Edit</button>
 						<button class="pure-button button-danger" ng-click="deleteRow($index)" >Delete</button>
 					</td>
 				</tr>
@@ -102,15 +108,15 @@
 					<td>
 						<select ng-model="rowInput.dur" class="pure-input">
 							<option value="">----</option>
-							<option ng-repeat="d in [1,2,3]">{{$index+1}}</option>
+							<option ng-repeat="d in numberToArray(3)">{{d}}</option>
 						</select>
 					</td>
 					<td>
 						<!-- checkboxes -->
-						<span ng-repeat="bt in userConfigs.batches[conf.brCh].many">
-							<label for="{{'chBtc'+$index}}">{{conf.brCh + bt}}</label>
-							<input type="checkbox" id="{{'chBtc'+$index}}" ng-model="rowInput.b[$index]" />
-						</span>
+						<div class="cb-span" ng-repeat="bt in numberToArray(userConfigs.batches[conf.brCh].many)">
+							<input style="display:none;" type="checkbox" id="{{'chBtc'+$index}}" ng-model="rowInput.b[$index]" />
+							<label class="cb" for="{{'chBtc'+$index}}">{{conf.brCh + bt}}</label>
+						</div>
 					</td>
 					<td>
 						<select ng-model="rowInput.s" class="pure-input">
@@ -137,13 +143,13 @@
 				<tr>
 					<td colspan="7">
 						<center>
-							<button ng-click="addRow(rowInput)" class="pure-button button-success">+ ADD ROW</button>
+							<button ng-click="addRow(rowInput,conf.semCh,conf.brCh)" class="pure-button button-success">+ ADD ROW</button>
 						</center>
 					</td>
 					<td>
 						<center>
 							<p ng-show="savingPost"><img src="gif-infinite.gif"></p>
-							<button ng-hide="savingPost" ng-click="savePost()" class="pure-button pure-button-primary">SAVE</button>
+							<button ng-hide="savingPost" ng-click="savePost(userConfigs)" class="pure-button pure-button-primary">SAVE</button>
 						</center>
 					</td>
 				</tr>

@@ -34,18 +34,18 @@ ttEditApp.controller('bodyCntr', ['$scope','$http','$cookies','$location', funct
 
 	//code for routing with path or search or hash
 	$scope.urlToData = function () {
-		var decision = $location.hash() ? 2 : 1; console.log($location.hash(),$location.path(),$location.search());
+		var decision = $location.hash() ? 2 : 1; //console.log($location.hash(),$location.path(),$location.search());
 		switch(decision){
 			case 2:
 			var arr = $location.hash().split('/');
-			console.log(arr);
+			// console.log(arr);
 			break;
 
 			default:
 			var arr = $location.path().split('/'); //$location.search().split('/')
-			console.log(arr);
+			// console.log(arr);
 			arr.splice(0,1);
-			console.log(arr);
+			// console.log(arr);
 			break;
 
 		}
@@ -79,47 +79,72 @@ ttEditApp.controller('bodyCntr', ['$scope','$http','$cookies','$location', funct
 		$scope.urlToData();
 	}
 
-
+	//code for noFilters
+	$scope.noFilters = false;
+	$scope.toggleNoFilters = function () {
+		$scope.noFilters = !$scope.noFilters;
+	}
 	//code for save and saving
 	$scope.savingPost = false;
-	$scope.savePost = function(){
+	$scope.savePost = function(toSave){
 		$scope.savingPost = true;
-		$http.post('http://52.76.114.10:3001/getuseractivitylist', {"currentpage":2,"pagelimit":220})
+		$http({
+			method: 'POST',	headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+			url: 'http://localhost/test/tt-save/',
+			data: toSave,
+		})
 			.success(function(res){
-				//console.log('getUseractivityCategory', JSON.stringify(res));
+				// console.log('test/tt-save', JSON.stringify(res));
 				if(res.rTL){
-					alert('Session Expired');
-						$scope.savingPost = false;
+					alert('errorr');
+					$scope.savingPost = false;
 
 				} else {
-				console.log(res);
+					console.log(res);
+					alert('Saved');
 					$scope.savingPost = false;
 
 				}
 			}).error(function(err){
 				console.log(err);
-					$scope.savingPost = false;
+				$scope.savingPost = false;
 
 			})
 		console.log('saving data');
 	}
 
-	$scope.showBtc = function(b,cl) {
+	$scope.showBtc = function(b,br,sem) {
+		var str = sem;
 		if (b) {
-			var str = '';
-			if (b['0']==true) { str+=cl+'1,'};
-			if (b['1']==true) { str+=cl+'2,'};
-			if (b['2']==true) { str+=cl+'3,'};
-			if (b['3']==true) { str+=cl+'4,'};
-			if (b['4']==true) { str+=cl+'5,'};
-			if (b['5']==true) { str+=cl+'6,'};
-			if (b['6']==true) { str+=cl+'7,'};
-			if (b['7']==true) { str+=cl+'8,'};
-			str = str.slice(0, - 1);
+			//if no key is true then do nothing here
+			var atLeastOneTrue = false;
+			for(var key in b){
+				if(b[key] == true){
+					atLeastOneTrue = true;
+					break;
+				}
+			}
+			if (atLeastOneTrue == true) {
+				str += '(';
+				for (var key in b) {
+					if (b[key]==true) { str+= br+(JSON.parse(key)+1)+',' };
+				}
+				str = str.slice(0, - 1);
+				str += ')';
+				return str;
+			}
+		} {
+			str += br;
 			return str;
-		} else {
-			return cl;
 		}
+	}
+
+	//number to array for ng-repeat: 4 -> [1,2,3,4]
+	$scope.numberToArray = function(num){
+		var arr = [];
+		//i must start with 1 and end to num
+		for (var i = 1; i <= num; i++) {arr.push(i);};
+		return arr;
 	}
 
 	$scope.urlToData();
