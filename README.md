@@ -139,3 +139,106 @@ rs=3; rs=3; rs=3; rs=3; rs=3; rs=3; rs=3; rs=1,cs=2; empty;
 rs=3; rs=3; a:rs=3; b:rs=3; c:rs=3; rs=3; rs=3; d:rs=1,cs=2; empty;
                                                 e:rs=1,cs=3;
                                                 f:rs=1,cs=3;
+
+
+-------------------
+examples explained here
+
+a[3],b[4],c[5,6],d[8,9,10],e[8,9,10]
+
+[cs=1,rs=2; |  cs=1,rs=2; |  a:cs=1,rs=2; |  b:cs=1,rs=2; |  c:cs=2,rs=2; |  cs=1,rs=2; |  d:cs=3,rs=1;],[ e:cs=3,rs=1;]
+
+
+
+1-0,2-0,3-1,4-1,5-1,6-1,7-0,8-2,9-2,10-2
+
+maxFreq: 2
+
+//cs: length of arr | 1
+//rs:       | maxFreq
+
+1st line: 1-> cs=1 rs=2     0
+1st line: 2-> cs=1 rs=2     0
+1st line: 3-> cs=1 rs=2     a
+1st line: 4-> cs=1 rs=2     b
+1st line: 5-> cs=2 rs=2     c
+//1st line: 6-> cs=2 rs=2
+1st line: 7-> cs=1 rs=2     0
+1st line: 8-> cs=3 rs=1     d
+
+2nd line: 8-> cs=3 rs=1     e
+
+
+
+-------------------------------------------------------------------
+
+
+a[3,4],b[4],c[5,6],d[8,9,10],e[8,9,10],f[8,9,10]
+
+[cs=1,rs=2; |  cs=1,rs=2; |  a:cs=1,rs=2; |  b:cs=1,rs=2; |  c:cs=2,rs=2; |  cs=1,rs=2; |  d:cs=3,rs=1;],[ e:cs=3,rs=1;]
+
+
+
+1-0,2-0,3-1,4-2,5-1,6-1,7-0,8-3,9-3,10-3
+
+a:2, b:2, c:1, d:3, e:3, f:3
+
+maxFreq: 3
+
+//cs: length of arr | 1
+//rs: if(fr[i]>1) 1 | maxFreq
+
+1st line: 1-> cs=1 rs=3     0
+1st line: 2-> cs=1 rs=3     0
+1st line: 3-> cs=2 rs=1     a
+//1st line: 4-> cs=1 rs=3   
+1st line: 5-> cs=2 rs=3     c
+//1st line: 6-> cs=2 rs=2
+1st line: 7-> cs=1 rs=3     0
+1st line: 8-> cs=3 rs=1     d
+
+2nd line: 3-> cs=1 rs=1     #
+2nd line: 4-> cs=1 rs=1     b
+2nd line: 8-> cs=3 rs=1     e
+
+3rd line: 8-> cs=3 rs=1     f
+
+-------------------------------------------------------------------
+
+
+a[3,4],b[4,5],c[5,6],d[8,9,10],e[8,9,10],f[8,9,10]
+
+[cs=1,rs=2; |  cs=1,rs=2; |  a:cs=1,rs=2; |  b:cs=1,rs=2; |  c:cs=2,rs=2; |  cs=1,rs=2; |  d:cs=3,rs=1;],[ e:cs=3,rs=1;]
+
+
+
+1-0,2-0,3-1,4-2,5-2,6-1,7-0,8-3,9-3,10-3        tCS = 10    tFr = 18
+
+a:2, b:2, c:2, d:3, e:3, f:3                    
+
+maxFreq: 3                                      tm: 3 X 10 = 30 (rsXcs)
+
+//cs: length of arr | 1
+//rs: if(fr[i]>1) 1 | maxFreq
+
+1st line: 1-> cs=1 rs=3     0
+1st line: 2-> cs=1 rs=3     0
+1st line: 3-> cs=2 rs=1     a
+//1st line: 4-> cs=1 rs=3   
+1st line: 5-> cs=2 rs=1     c
+//1st line: 6-> cs=2 rs=2
+1st line: 7-> cs=1 rs=3     0
+1st line: 8-> cs=3 rs=1     d                   tCS=10:true | tm: 16
+
+2nd line: 3-> cs=1 rs=1     #
+2nd line: 4-> cs=2 rs=1     b
+2nd line: 6-> cs=1 rs=1     #
+2nd line: 8-> cs=3 rs=1     e                   tCS=7:7 (true) | tm: 7
+
+3rd line: 8-> cs=3 rs=1     f                   tCS=3:          | tm: 3
+->
+3rd line: 3-> cs=1 rs=1     #                   tCS=4:          | tm: 4
+3rd line: 4-> cs=1 rs=1     #                   tCS=5:          | tm: 5
+3rd line: 5-> cs=1 rs=1     #                   tCS=6:          | tm: 6
+3rd line: 6-> cs=1 rs=1     #                   tCS=7:7 (true)  | tm: 7 --- 7+7+14=30(true)
+
