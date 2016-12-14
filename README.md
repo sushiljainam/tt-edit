@@ -106,3 +106,36 @@ cbId:#12:{'ItiMam','CC','A201','7CS'}
 {Wednesday,[5],cbId:#12}
 {Saturday,[1],cbId:#12}
 should we use?: NO. *room may change. *teacher may change. *rest is too small to optimize.
+
+------------
+for noticeBoard view:
+input:
+rows=[{"dur":"2","p":"5","d":"Monday","s":"IR","t":"RKB","r":"B203","sem":"4","br":"IT","b":{}},..]
+rows=[{"pX":[5,6],"d":"Monday","s":"IR","t":"RKB","r":"B203"(,"sem":"4","br":"IT")->(not directly useful, but to show batches labels),"b":{"0":true,"2":true}},..]
+
+^e.g.1
+//collect all (pX) for a #Day a[3],b[4],c[5,6],d[8,9,10],e[8,9,10]                            --INPUT
+//count for every period for this [0,0,1,1,1,1,0,2,2,2]                                       --inLOCAL
+//find its max: #2                                                                            --inLOCAL
+//we need #this many rows for that #Day
+rs=2; rs=2; rs=2; rs=2; rs=2,cs=2;  rs=2; cs=3;
+                                          cs=3;
+
+rs=2; rs=2; a:rs=2; b:rs=2; c:rs=2,cs=2;  rs=2; d:cs=3;
+                                                e:cs=3;
+
+cs=1,rs=2; |  cs=1,rs=2; |  a:cs=1,rs=2; |  b:cs=1,rs=2; |  c:cs=2,rs=2; |  cs=1,rs=2; |  d:cs=3,rs=1;
+                                                                                       |  e:cs=3,rs=1;
+
+[cs=1,rs=2; |  cs=1,rs=2; |  a:cs=1,rs=2; |  b:cs=1,rs=2; |  c:cs=2,rs=2; |  cs=1,rs=2; |  d:cs=3,rs=1;],[ e:cs=3,rs=1;] --OUTPUT
+
+^e.g.2
+//collect all (pX) for a #Day a[3],b[4],c[5],d[8,9],e[8,9,10],f[8,9,10]
+//count for every period for this [0,0,1,1,1,0,0,3,3,2]
+//find its max: #3
+rs=3; rs=3; rs=3; rs=3; rs=3; rs=3; rs=3; rs=1,cs=2; empty;
+                                          rs=1,cs=3;
+                                          rs=1,cs=3;
+rs=3; rs=3; a:rs=3; b:rs=3; c:rs=3; rs=3; rs=3; d:rs=1,cs=2; empty;
+                                                e:rs=1,cs=3;
+                                                f:rs=1,cs=3;
