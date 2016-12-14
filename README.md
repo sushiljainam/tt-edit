@@ -62,6 +62,8 @@ TODO: super idea v2: for switch view - matrix view - period and duration
     reason: 1. we need good access of all periods, also the middles.(as in v1)
             2. in v2 operations are costly.
 
+TODO: <select multiple> for teachers with on off
+TODO: if all batches are selected/empty - do it same
 
 
 ----------
