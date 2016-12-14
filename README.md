@@ -61,3 +61,46 @@ TODO: super idea v2: for switch view - matrix view - period and duration
     compare: v2 is not good enough
     reason: 1. we need good access of all periods, also the middles.(as in v1)
             2. in v2 operations are costly.
+
+
+
+----------
+process:
+get data to show {acc to filters}
+-{confX.periods}//with startTime,endTime
+-{confX.days}
+-{confX.durations}
+-conf.userTypes
+-conf.userTypes.rooms
+-conf.userTypes.teachers
+-conf.userTypes.studentCourses
+-conf.userTypes.studentCourseYears
+-conf.userTypes.studentCourseSemesters
+-conf.userTypes.studentCourseBranches
+-conf.userTypes.studentCourseBranchBatchCount
+-conf.subjects | conf.userTypes.studentCourseSemesterAndBranchSubjects
+-//sub<-(branch,sem); branch<-(course); year<-(course); sem<-(course); batchCount<-(branch,sem)
+-rows
+
+upsert data to POST
+
+
+
+dataFormats
+-rows {Day,Period,Duration,Batches:('sem'+'branch'+'batchSeq'?)+,Room,Teacher,Subject}          //
+-rows {{Day,Period,Duration},Batches:('sem'+'branch'+'batchSeq'?)+,Room,Teacher,Subject}        //label:II
+-rows {{Day,Period,Duration},{Batches:('sem'+'branch'+'batchSeq'?)+,Room,Teacher,Subject}}      //{matrixInfo},{visibleInfo}
+-rows {{Day,Period,Duration},{{Batches:('sem'+'branch'+'batchSeq'?)+,Room,Teacher},Subject}}    //becoz subject cannot be input, and one of other 3 must be present in input - sem,branch,batch? | room | teacher
+-rows {matrixInfo,rest..all..individual}
+
+--matrixInfo {Day,Period,Duration}                                                              //Monday,3,2   Tuesday,3,3
+--matrixInfo {Day,PeriodStart,PeriodEnd}                                                        //Monday,3,4   Tuesday,3,5
+--matrixInfo {Day,PeriodsArray}                                                                 //Monday,[3,4] Tuesday,[3,4,5]  label:pA
+
+
+^e.g. of II with pA; should we use Id for such optimizations as below?
+cbId:#12:{'ItiMam','CC','A201','7CS'}
+{Monday,[3],cbId:#12}
+{Wednesday,[5],cbId:#12}
+{Saturday,[1],cbId:#12}
+should we use?: NO. *room may change. *teacher may change. *rest is too small to optimize.
