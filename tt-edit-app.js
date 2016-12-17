@@ -161,9 +161,9 @@ ttEditApp.controller('bodyCntr', ['$scope','$http','$cookies','$location', funct
 			return maxFreq;
 		}
 		//start
-		arr1 = arr1 || [[3],[4],[5],[8,9],[8,9,10],[8,9,10]];
-		var maxX = 10; //later from a function
-		console.log(arr1,arr1.toString(),maxX);
+		arr1 = arr1 || [[3],[4],[5],[8,9],[8,9,10],[8,9,10]];//sample input
+		var maxCS = 10; //later from a function
+		console.log(arr1,arr1.toString(),maxCS);
 		var freqArrayOfNum = [0,0,0,0,0,0,0,0,0,0];//index tells number
 		var maxOfFreqArrayOfNum = 0;
 		for (var a in arr1) { // console.log(arr1[a]);
@@ -179,11 +179,27 @@ ttEditApp.controller('bodyCntr', ['$scope','$http','$cookies','$location', funct
 			//add a property maxFreqOfNums for every arr1[a]
 			arr1[a].maxFreqOfNums = calcMaxFreq(arr1[a],freqArrayOfNum);
 			// console.log(arr1[a].maxFreqOfNums);
-			console.log(arr1[a]);
+			// console.log(arr1[a]);
 		}
+		console.log(arr1);
 		//start for rs and cs
-		var maxRS = maxOfFreqArrayOfNum; console.log(maxRS);
-
+		var maxRS = maxOfFreqArrayOfNum; console.log(maxRS,maxCS);
+		//start rows -- inputs: arr1,freqArrayOfNum,maxRS,maxCS
+		var resultRows = [];
+		for (var i = 0; i < maxRS; i++) {
+			var resultRow = [];
+			for (var j = 0; j < freqArrayOfNum.length; j++) {
+				if(freqArrayOfNum[j]<=1 && freqArrayOfNum[j]>-1) {
+					freqArrayOfNum[j] = -1;
+					resultRow.push({'rs':maxRS,'cs':1});
+				} else if(freqArrayOfNum[j]>1) {
+					freqArrayOfNum[j]<=2 ? freqArrayOfNum[j] = -1 : freqArrayOfNum[j]--;
+					resultRow.push({'rs':1,'cs':1})
+				}
+			}
+			resultRows.push(resultRow);
+		}
+		console.log(resultRows,arr1,freqArrayOfNum);
 		//end
 	}
 	$scope.conversFx();
