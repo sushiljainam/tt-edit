@@ -30,6 +30,7 @@ ttEditApp.controller('bodyCntr', ['$scope','$http','$cookies','$location', funct
 		$scope.viewTable = !$scope.viewTable;
 		// console.log('3',$cookies.get('viewTable'),typeof $scope.viewTable, $scope.viewTable);
 
+		$scope.conversFx();
 	}
 
 	//code for routing with path or search or hash
@@ -147,5 +148,10 @@ ttEditApp.controller('bodyCntr', ['$scope','$http','$cookies','$location', funct
 		return arr;
 	}
 
+	//function to convert list data to matrix view
+	$scope.conversFx = function (arr1,callback) {
+		arr1 = arr1 || [[3],[4],[5],[8,9],[8,9,10],[8,9,10]];
+		var maxX = 10; //later from a function
+	}
 	$scope.urlToData();
 }]);
