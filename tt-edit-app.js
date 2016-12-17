@@ -150,8 +150,42 @@ ttEditApp.controller('bodyCntr', ['$scope','$http','$cookies','$location', funct
 
 	//function to convert list data to matrix view
 	$scope.conversFx = function (arr1,callback) {
+		//before start
+		var calcMaxFreq = function (array1,array2) {
+			var maxFreq = 0;
+			for (var i in array1) {
+				if(maxFreq<array2[array1[i]-1])
+				maxFreq = array2[array1[i]-1];
+			}
+			// console.log(maxFreq);
+			return maxFreq;
+		}
+		//start
 		arr1 = arr1 || [[3],[4],[5],[8,9],[8,9,10],[8,9,10]];
 		var maxX = 10; //later from a function
+		console.log(arr1,arr1.toString(),maxX);
+		var freqArrayOfNum = [0,0,0,0,0,0,0,0,0,0];//index tells number
+		var maxOfFreqArrayOfNum = 0;
+		for (var a in arr1) { // console.log(arr1[a]);
+			for (var n in arr1[a]) { // console.log(arr1[a][n]);
+				freqArrayOfNum[arr1[a][n]-1]++; // console.log(freqArrayOfNum.toString());
+				if (maxOfFreqArrayOfNum<freqArrayOfNum[arr1[a][n]-1]) {
+					maxOfFreqArrayOfNum = freqArrayOfNum[arr1[a][n]-1];
+				}
+			}
+		}
+		console.log(freqArrayOfNum.toString());
+		for (var a in arr1) {
+			//add a property maxFreqOfNums for every arr1[a]
+			arr1[a].maxFreqOfNums = calcMaxFreq(arr1[a],freqArrayOfNum);
+			// console.log(arr1[a].maxFreqOfNums);
+			console.log(arr1[a]);
+		}
+		//start for rs and cs
+		var maxRS = maxOfFreqArrayOfNum; console.log(maxRS);
+
+		//end
 	}
+	$scope.conversFx();
 	$scope.urlToData();
 }]);
