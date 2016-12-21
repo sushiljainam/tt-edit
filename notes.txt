@@ -20,3 +20,12 @@ touch friendly (keyboard + touch friendly)
 smart suggestion list for all kind of type-able words
 will it learn?
 remove suggestions, if not used much (low rating): reduce options: psychology
+
+
+
+design:
+html divs - position, top, display etc.
+css styles
+logo
+config icons
+transitions
