@@ -1,0 +1,22 @@
+future:
+
+progrr|devr friiendly ------use shell like commands: (keyboard friendly)
+add m->tab->(monday) 3 2 CS3,4->enter
+update->tab(show hash) #12 d->tab->(duration):={ }2->enter
+add t->downKey->(tuesday)->downKey->(thursday)
+{add} monday 3 3 ITI CSC CC
+delete->tab->(show hash)
+undo
+print
+export jpg|pdf|word|html|json-text
+config s->tab->(student)->enter->3CS
+config t->tab->(teacher)->enter->SCJ
+logout
+login username 123456
+{login} username 1->($)2->($)3->($)4->($)5->($)6->($)
+
+
+touch friendly (keyboard + touch friendly)
+smart suggestion list for all kind of type-able words
+will it learn?
+remove suggestions, if not used much (low rating): reduce options: psychology
