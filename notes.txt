@@ -29,3 +29,41 @@ css styles
 logo
 config icons
 transitions
+
+
+
+
+---------------listView to noticeBView-------
+input(primary): array of classes in a day
+-> class: array of all periods, when class is held e.g.: [3], [3,4], [8,9,10]
+--> length of class array tells duration
+array of classes: e.g.: [[3],[4],[5]], [[3],[4,5],[5],[8,9,10],[8,9,10]]
+input(secondary): (integer number) total periods e.g.: 10
+--------------
+expected output: array of rows
+-> row: array of cells
+--> cell: object having rowspan & colspan e.g.: {rs:3,cs:1}
+array of cells: e.g.: [{rs:3,cs:1},{rs:3,cs:1},{rs:1,cs:3}]
+array of rows: e.g.: [[{rs:3,cs:1},{rs:3,cs:1},{rs:1,cs:3}],[{rs:3,cs:1}]]
+--------------
+---------------ALGO:------------------------
+_______________before ALGO-BODY______________
+tempData:
+freqForIndivPeriod(array[totalPeriods]): with array index store frequency of each period in input1
+freqForFamily(array[totalPeriods]): with array index store max frequency shown by each period's family(in class)
+-> (also can do it with maxFreq of periods in class)
+maxFreqPeriod(integer): max value in freqForIndivPeriod
+______________ALGO-BODY______________
+//two approaches: 1) initially break and then join or remove unnecessary | 2) start alloting only necessary
+//start with 1)
+for loop on i till maxFreqPeriod: rows
+  for loop on j till totalPeriods: columns
+    push {rs:1,cs:1}  :: 2D array
+    //****// also fill data, occupied or unoccupied, indiFreq and familyFreq
+//all broken e.g. 3x10 -> 30 cells -> all same as 1,1
+//// _________start reading data and fill spaces acc to data: Appr1_________
+//// for loop on i in input1
+////   //input1[i] is an array, having periods, atleast 1 length
+//// _________start filling spaces acc to data mining: Appr2_________
+//// for loop on rows then for loop on cols
+________Appr3: start maintaining colspan only_______
