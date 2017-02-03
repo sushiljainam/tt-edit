@@ -2,7 +2,7 @@
 * @Author: Sushil Jain
 * @Date:   2017-02-03 17:49:12
 * @Last Modified by:   csnodejs4
-* @Last Modified time: 2017-02-03 18:51:38
+* @Last Modified time: 2017-02-03 19:06:39
 */
 
 'use strict';
@@ -11,6 +11,7 @@ var INDEX_PERIOD = 0;
 var INDEX_DURATION = 1;
 var c = console;
 var cl = console.log;
+var cl = function(){};//temp
 //
 
 var stepCount = 0;
@@ -107,13 +108,30 @@ var periodWithCounts = [
  {label: 8,  count: 0},
  {label: 9,  count: 0},
  {label: 10, count: 0}];
-
+var maxFreq = -1;
 cl(periodWithCounts);
 for (var i = 0; i < merged.length; i++) {
 	periodWithCounts[merged[i]-1].count++;
+	if (maxFreq < periodWithCounts[merged[i]-1].count){
+		maxFreq = periodWithCounts[merged[i]-1].count;
+	}
 };
-cl(periodWithCounts);
-//var resArray = [];
+cl(periodWithCounts, maxFreq);
+
+var cl = console.log;//temp
+
+var resArray = [];
+for (var i = 0; i < periodWithCounts.length; i++) {
+	resArray.push([]);
+	for (var j = 0; j < maxFreq; j++) {
+		var cellItem = {}; //later init here all things
+		// var cellItem = {rs:0, cs:0, n:false, aOv:true, plbl:0}; 
+
+		resArray[i].push(cellItem);
+	};
+};
+cl(resArray);
+
 
 
 function getUID () {
