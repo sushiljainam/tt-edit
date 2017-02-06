@@ -2,7 +2,7 @@
 * @Author: Sushil Jain
 * @Date:   2017-02-03 17:49:12
 * @Last Modified by:   csnodejs4
-* @Last Modified time: 2017-02-06 15:38:39
+* @Last Modified time: 2017-02-06 16:02:04
 */
 
 'use strict';
@@ -152,19 +152,38 @@ for (var i = 0; i < periodWithCounts.length; i++) {
 	};
 };
 cl(resArray);
-
+cl(data);
 for (var i = 0; i < maxFreq; i++) {
 	for (var j = 0; j < periodWithCounts.length; j++) {
 		var cellItem = resArray[j][i];
 		cellItem.n = (cellItem.actualCount==0 && cellItem.virtualCount==0);
 		cellItem.aOv = !((cellItem.actualCount==0 && cellItem.virtualCount > 0) || cellItem.virtualCount ==0);
 		
+		if(cellItem.aOv && !cellItem.periodLabel){
+			var classItem = getClassItemForStartingPeriodAndNotAssigned(cellItem.col + 1);
+			for (var k = 0; k < classItem.periods.length; k++) {
+				resArray[classItem.periods[k]-1][i].periodLabel = classItem.uid;
+			};
+		}
 		// cl(cellItem);
 	};
 };
-printMat(resArray, 'n');
+printMat(resArray, 'aOv');
+cl()
+printMat(resArray, 'periodLabel');
 
 console.timeEnd('ttDrawTime');
+
+function getClassItemForStartingPeriodAndNotAssigned (periodSt) {
+	for (var i = 0; i < data.length; i++) {
+		var classItem = data[i];
+		if(!classItem.assigned && classItem.periods[0]==periodSt){
+			classItem.assigned = true;
+			return classItem;
+			// break;
+		}
+	};
+}
 
 function printMat (data, key) {
 	for (var i = 0; i < data.length; i++) {
