@@ -2,7 +2,7 @@
 * @Author: Sushil Jain
 * @Date:   2017-02-03 17:49:12
 * @Last Modified by:   csnodejs4
-* @Last Modified time: 2017-02-06 16:23:07
+* @Last Modified time: 2017-02-06 16:50:54
 */
 
 'use strict';
@@ -15,11 +15,11 @@ var cl = function(){};//temp
 //
 
 var stepCount = 0;
-var UIDlist = ['a', 'b', 'c', 'd', 'e', 'f', 'g'];
+var UIDlist = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 var UIDcount = 0;
 
 //
-var input1 = [[3],[4,5],[5],[8,9],[8,9,10],[8,9,10]];
+var input1 = [[3],[4,5],[5],[8,9],[8,9,10],[8,9,10],[10]];
 var input2 = [[3,1],[4,2],[5,1],[8,2],[8,3],[8,3]];
 
 
@@ -142,7 +142,7 @@ for (var i = 0; i < periodWithCounts.length; i++) {
 	resArray.push([]);
 	for (var j = 0; j < maxFreq; j++) {
 		var cellItem = {}; //later init here all things
-		var cellItem = {row:j, col:i, /*rs:0, cs:0, n:false, aOv:true, plbl:0*/}; 
+		var cellItem = {row:j, col:i, rspan:1, cspan:1 /*, n:false, aOv:true, plbl:0*/}; 
 		// cl(i,j);
 		// count for actual and virtual
 		cellItem.actualCount = j==0 ? periodWithCounts[i].count : ((periodWithCounts[i].count - j)>0?(periodWithCounts[i].count - j):0);
@@ -169,21 +169,24 @@ for (var i = 0; i < maxFreq; i++) {
 
 		if(cellItem.aOv && !cellItem.periodLabel){
 			var classItem = getClassItemForStartingPeriodAndNotAssigned(cellItem.col + 1);
-			for (var k = 0; k < classItem.periods.length; k++) {
-				resArray[classItem.periods[k]-1][i].periodLabel = classItem.uid;
-				resArray[classItem.periods[k]-1][i].n = k>0;
+			if (classItem) {
+				for (var k = 0; k < classItem.periods.length; k++) {
+					resArray[classItem.periods[k]-1][i].periodLabel = classItem.uid;
+					resArray[classItem.periods[k]-1][i].n = k>0;
+					resArray[classItem.periods[k]-1][i].cspan = classItem.periods.length;
+				};
 			};
 		}
 		// cl(cellItem);
 	};
 };
 
-cl(resArray);
-// printMat(resArray, 'n');
+// cl(resArray);
+printMat(resArray, 'cspan');
 // cl()
 // printMat(resArray, 'aOv');
 // cl()
-// printMat(resArray, 'periodLabel');
+printMat(resArray, 'periodLabel');
 
 console.timeEnd('ttDrawTime');
 
