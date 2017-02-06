@@ -2,11 +2,11 @@
 * @Author: Sushil Jain
 * @Date:   2017-02-03 17:49:12
 * @Last Modified by:   csnodejs4
-* @Last Modified time: 2017-02-03 19:06:39
+* @Last Modified time: 2017-02-06 15:20:08
 */
 
 'use strict';
-
+console.time('ttDrawTime');
 var INDEX_PERIOD = 0;
 var INDEX_DURATION = 1;
 var c = console;
@@ -98,16 +98,17 @@ for (var i = 0; i < data.length; i++) {
 cl(data);
 
 var periodWithCounts = [
- {label: 1,  count: 0},
- {label: 2,  count: 0},
- {label: 3,  count: 0},
- {label: 4,  count: 0},
- {label: 5,  count: 0},
- {label: 6,  count: 0},
- {label: 7,  count: 0},
- {label: 8,  count: 0},
- {label: 9,  count: 0},
- {label: 10, count: 0}];
+//label is period label, count is 0 init, count for family is 0 init
+ {label: 1,  count: 0, countFFamily:0},
+ {label: 2,  count: 0, countFFamily:0},
+ {label: 3,  count: 0, countFFamily:0},
+ {label: 4,  count: 0, countFFamily:0},
+ {label: 5,  count: 0, countFFamily:0},
+ {label: 6,  count: 0, countFFamily:0},
+ {label: 7,  count: 0, countFFamily:0},
+ {label: 8,  count: 0, countFFamily:0},
+ {label: 9,  count: 0, countFFamily:0},
+ {label: 10, count: 0, countFFamily:0}];
 var maxFreq = -1;
 cl(periodWithCounts);
 for (var i = 0; i < merged.length; i++) {
@@ -116,6 +117,22 @@ for (var i = 0; i < merged.length; i++) {
 		maxFreq = periodWithCounts[merged[i]-1].count;
 	}
 };
+for (var i = 0; i < data.length; i++) {
+	var listPeriods = data[i].periods;
+	var max =0;
+	for (var j = 0; j < listPeriods.length; j++) {
+		if(max<periodWithCounts[listPeriods[j]-1].count){
+			max = periodWithCounts[listPeriods[j]-1].count;
+		}
+	};
+	for (var j = 0; j < listPeriods.length; j++) {
+		periodWithCounts[listPeriods[j]-1].countFFamily = max;
+	};
+};
+for (var i = 0; i < periodWithCounts.length; i++) {
+	periodWithCounts[i].countFFamily = periodWithCounts[i].countFFamily || 1;
+};
+var cl = console.log;//temp
 cl(periodWithCounts, maxFreq);
 
 var cl = console.log;//temp
@@ -125,13 +142,19 @@ for (var i = 0; i < periodWithCounts.length; i++) {
 	resArray.push([]);
 	for (var j = 0; j < maxFreq; j++) {
 		var cellItem = {}; //later init here all things
-		// var cellItem = {rs:0, cs:0, n:false, aOv:true, plbl:0}; 
-
+		var cellItem = {row:j, col:i, /*rs:0, cs:0, n:false, aOv:true, plbl:0*/}; 
+		// cl(i,j);
+		// count for actual and virtual
+		cellItem.actualCount = j==0 ? periodWithCounts[i].count : ((periodWithCounts[i].count - j)>0?(periodWithCounts[i].count - j):0);
+		cellItem.virtualCount = j==0 ? periodWithCounts[i].countFFamily : ((periodWithCounts[i].countFFamily - j)>0?(periodWithCounts[i].countFFamily - j):0 );
+		// 
 		resArray[i].push(cellItem);
 	};
 };
 cl(resArray);
 
+
+console.timeEnd('ttDrawTime');
 
 
 function getUID () {
