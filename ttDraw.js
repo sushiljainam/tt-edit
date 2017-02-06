@@ -2,7 +2,7 @@
 * @Author: Sushil Jain
 * @Date:   2017-02-03 17:49:12
 * @Last Modified by:   csnodejs4
-* @Last Modified time: 2017-02-06 16:50:54
+* @Last Modified time: 2017-02-06 17:14:08
 */
 
 'use strict';
@@ -180,9 +180,24 @@ for (var i = 0; i < maxFreq; i++) {
 		// cl(cellItem);
 	};
 };
-
-// cl(resArray);
-printMat(resArray, 'cspan');
+for (var j = 0; j < periodWithCounts.length; j++) {
+	var countEmpty = 0;
+	for (var i = maxFreq-1; i >= 0; i--) {
+		var cellItem = resArray[j][i];
+		console.log(cellItem)
+		if(!cellItem.aOv && !!cellItem.n){
+			countEmpty++;
+			continue;
+		} else if (!cellItem.n) {
+			if (countEmpty>=1) {
+				cellItem.rspan = countEmpty+1;
+			};
+			break;
+		};
+	};
+};
+cl(resArray);
+printMat(resArray, 'rspan');
 // cl()
 // printMat(resArray, 'aOv');
 // cl()
