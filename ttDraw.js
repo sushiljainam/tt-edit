@@ -2,7 +2,7 @@
 * @Author: Sushil Jain
 * @Date:   2017-02-03 17:49:12
 * @Last Modified by:   csnodejs4
-* @Last Modified time: 2017-02-06 15:20:08
+* @Last Modified time: 2017-02-06 15:38:39
 */
 
 'use strict';
@@ -153,9 +153,28 @@ for (var i = 0; i < periodWithCounts.length; i++) {
 };
 cl(resArray);
 
+for (var i = 0; i < maxFreq; i++) {
+	for (var j = 0; j < periodWithCounts.length; j++) {
+		var cellItem = resArray[j][i];
+		cellItem.n = (cellItem.actualCount==0 && cellItem.virtualCount==0);
+		cellItem.aOv = !((cellItem.actualCount==0 && cellItem.virtualCount > 0) || cellItem.virtualCount ==0);
+		
+		// cl(cellItem);
+	};
+};
+printMat(resArray, 'n');
 
 console.timeEnd('ttDrawTime');
 
+function printMat (data, key) {
+	for (var i = 0; i < data.length; i++) {
+		var str = '';
+		for (var j = 0; j < data[i].length; j++) {
+			str += ',' + data[i][j][key];
+		};
+		console.log(str);
+	};
+}
 
 function getUID () {
 	return UIDlist[UIDcount++];
