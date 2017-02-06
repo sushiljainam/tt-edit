@@ -2,7 +2,7 @@
 * @Author: Sushil Jain
 * @Date:   2017-02-03 17:49:12
 * @Last Modified by:   csnodejs4
-* @Last Modified time: 2017-02-06 18:10:13
+* @Last Modified time: 2017-02-06 18:21:09
 */
 
 'use strict';
@@ -15,7 +15,7 @@ var cl = function(){};//temp
 //
 
 var stepCount = 0;
-var UIDlist = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+var UIDlist = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l'];
 var UIDcount = 0;
 
 //
@@ -203,23 +203,20 @@ for (var j = 0; j < periodWithCounts.length; j++) {
 // cl()
 // printMat(resArray, 'periodLabel');
 //////////
-var resArr2 = array2dSwap(resArray, maxFreq, 10);
-// cl(JSON.stringify(resArr2));
-
-for (var i = 0; i < resArr2.length; i++) {
-	for (var j = 0; j < resArr2[i].length; j++) {
-		if (resArr2[i][j].n == true) delete resArr2[i][j];
-	};
-};
+var resArr2 = array2dSwapAndRemoveNull(resArray, maxFreq, 10);
 cl(JSON.stringify(resArr2));
+
 console.timeEnd('ttDrawTime');
 
-function array2dSwap (arr, m, n) {
+function array2dSwapAndRemoveNull (arr, m, n) {
 	var arr2 = [];
 	for (var i = 0; i < m; i++) {
 		arr2[i] = []
-		for (var j = 0; j < n; j++) {
-			arr2[i][j] = arr[j][i];
+		for (var j = 0, k = 0; j < n; j++) {
+			if(!arr[j][i].n){
+				arr2[i][k] = arr[j][i];
+				k++;
+			}
 		};
 	};
 	return arr2;
