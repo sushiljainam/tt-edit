@@ -2,7 +2,7 @@
 * @Author: Sushil Jain
 * @Date:   2017-02-03 17:49:12
 * @Last Modified by:   csnodejs4
-* @Last Modified time: 2017-02-06 17:14:08
+* @Last Modified time: 2017-02-06 18:10:13
 */
 
 'use strict';
@@ -196,14 +196,34 @@ for (var j = 0; j < periodWithCounts.length; j++) {
 		};
 	};
 };
-cl(resArray);
-printMat(resArray, 'rspan');
+// cl(JSON.stringify(resArray));
+// printMat(resArray, 'rspan');
 // cl()
 // printMat(resArray, 'aOv');
 // cl()
-printMat(resArray, 'periodLabel');
+// printMat(resArray, 'periodLabel');
+//////////
+var resArr2 = array2dSwap(resArray, maxFreq, 10);
+// cl(JSON.stringify(resArr2));
 
+for (var i = 0; i < resArr2.length; i++) {
+	for (var j = 0; j < resArr2[i].length; j++) {
+		if (resArr2[i][j].n == true) delete resArr2[i][j];
+	};
+};
+cl(JSON.stringify(resArr2));
 console.timeEnd('ttDrawTime');
+
+function array2dSwap (arr, m, n) {
+	var arr2 = [];
+	for (var i = 0; i < m; i++) {
+		arr2[i] = []
+		for (var j = 0; j < n; j++) {
+			arr2[i][j] = arr[j][i];
+		};
+	};
+	return arr2;
+}
 
 function getClassItemForStartingPeriodAndNotAssigned (periodSt) {
 	for (var i = 0; i < data.length; i++) {
