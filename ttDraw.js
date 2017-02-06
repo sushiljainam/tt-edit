@@ -2,7 +2,7 @@
 * @Author: Sushil Jain
 * @Date:   2017-02-03 17:49:12
 * @Last Modified by:   csnodejs4
-* @Last Modified time: 2017-02-06 16:02:04
+* @Last Modified time: 2017-02-06 16:23:07
 */
 
 'use strict';
@@ -159,18 +159,31 @@ for (var i = 0; i < maxFreq; i++) {
 		cellItem.n = (cellItem.actualCount==0 && cellItem.virtualCount==0);
 		cellItem.aOv = !((cellItem.actualCount==0 && cellItem.virtualCount > 0) || cellItem.virtualCount ==0);
 		
+		// cl(cellItem);
+	};
+};
+
+for (var i = 0; i < maxFreq; i++) {
+	for (var j = 0; j < periodWithCounts.length; j++) {
+		var cellItem = resArray[j][i];
+
 		if(cellItem.aOv && !cellItem.periodLabel){
 			var classItem = getClassItemForStartingPeriodAndNotAssigned(cellItem.col + 1);
 			for (var k = 0; k < classItem.periods.length; k++) {
 				resArray[classItem.periods[k]-1][i].periodLabel = classItem.uid;
+				resArray[classItem.periods[k]-1][i].n = k>0;
 			};
 		}
 		// cl(cellItem);
 	};
 };
-printMat(resArray, 'aOv');
-cl()
-printMat(resArray, 'periodLabel');
+
+cl(resArray);
+// printMat(resArray, 'n');
+// cl()
+// printMat(resArray, 'aOv');
+// cl()
+// printMat(resArray, 'periodLabel');
 
 console.timeEnd('ttDrawTime');
 
