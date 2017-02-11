@@ -17,10 +17,16 @@ ttEditApp.controller('bodyCntr', ['$scope','$http','$cookies','$location', funct
 	{"value":2, "label":"II","startTime":"","endTime":""},
 	{"value":3, "label":"III","startTime":"","endTime":""},
 	{"value":4, "label":"IV","startTime":"","endTime":""},
-	{"value":5, "label":"V","startTime":"","endTime":""}
+	{"value":5, "label":"V","startTime":"","endTime":""},
+	{"value":6, "label":"VI","startTime":"","endTime":""},
+	{"value":7, "label":"VII","startTime":"","endTime":""},
+	{"value":8, "label":"VIII","startTime":"","endTime":""},
+	{"value":9, "label":"IX","startTime":"","endTime":""},
+	{"value":10, "label":"X","startTime":"","endTime":""}
 	]
 
-	$scope.viewTable = $cookies.get('viewTable') ? (JSON.parse($cookies.get('viewTable')) === true ? true : false) : false;
+	// $scope.viewTable = $cookies.get('viewTable') ? (JSON.parse($cookies.get('viewTable')) === true ? true : false) : false;
+	$scope.viewTable = true;
 	$scope.toggleViewTable = function () {
 		// console.log('1',$cookies.get('viewTable'),typeof $scope.viewTable, $scope.viewTable);
 
