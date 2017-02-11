@@ -39,14 +39,21 @@ data.input = [
 	{"dur":"2","p":"5","d":"Saturday","s":"SEMINAR","t":["RKB","GF2"],"r":"PG LAB","sem":"4","br":"CS","b":{"2":true,"3":true}}
 	];
 
-data.inputDay = filterOneKey(data.input, 'd', 'Tuesday');
+data.output = [];
+var days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+for (var i = 0; i < days.length; i++) {
+	data.inputDay = filterOneKey(data.input, 'd', days[i]);
+	var temp = prepareFor_ttDraw(data.inputDay);
+	data.output[i] = filterKeysDelete(temp, ['actualCount','virtualCount','n','aOv']);
+};
+// data.inputDay = filterOneKey(data.input, 'd', 'Tuesday');
 
-console.log(JSON.stringify(data.inputDay));
+console.log(JSON.stringify(data.output));
 
 
-data.arrayForHtmlRow = prepareFor_ttDraw(data.inputDay);
-data.arrayForHtmlRow = filterKeysDelete(data.arrayForHtmlRow,['actualCount','virtualCount','n','aOv']);
-console.log(JSON.stringify(data.arrayForHtmlRow));
+// data.arrayForHtmlRow = prepareFor_ttDraw(data.inputDay);
+// data.arrayForHtmlRow = filterKeysDelete(data.arrayForHtmlRow,['actualCount','virtualCount','n','aOv']);
+// console.log(JSON.stringify(data.arrayForHtmlRow));
 
 function prepareFor_ttDraw (data) {
 	for (var i = 0; i < data.length; i++) {
